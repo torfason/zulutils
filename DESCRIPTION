@@ -1,0 +1,18 @@
+Package: zulutils
+Type: Package
+Title: Miscellaneous utility functions that the author found useful
+Version: 0.1.0
+Author: Magnus Thor Torfason
+Maintainer: Magnus Thor Torfason <m@zulutime.net>
+Description: 
+    This package could just as well have been named yamisc 
+    (Yet Another MISCellaneous package).
+    It contains various miscellaneous utility functions that the 
+    author found useful at the time. You are free to use it, but
+    YMMV (Your Mileage May Vary).
+License: cc-by-sa
+Encoding: UTF-8
+LazyData: true
+Imports:
+    stringr (>= 1.2.0)
+RoxygenNote: 6.0.1
