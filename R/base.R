@@ -12,6 +12,11 @@
 #   Build and Reload Package:  'Cmd + Shift + B'
 #   Check Package:             'Cmd + Shift + E'
 #   Test Package:              'Cmd + Shift + T'
+#
+# Roxygen documentation:
+#
+#   https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html
+
 
 dummy = function()
 {
