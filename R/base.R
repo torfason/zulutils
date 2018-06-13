@@ -25,6 +25,32 @@ dummy = function()
 
 # It would also be useful to add psum, pprod and pmean
 
+#' Sample from a vector or data.frame in a safe way
+#'
+#' This function duplicates the functionality of sample(), with the exception
+#' that it does not attempt the (rather silly in my opinion) user-friendliness
+#' of switching the interpretation of the first element to a number if the
+#' length of the vector is 1.
+#'
+#' To sample from an interval between 1 and n, simply use safer.sample(1:n)
+#' (or use sample(n) instead)
+zample = function (x, size=length(x), replace = FALSE, prob = NULL)
+{
+    # Special handling to allow sampling from a data.frame
+    if (class(x) == "data.frame")
+    {
+        size = ifelse( is.null(size), nrow(x), size )
+        return( x[ safer.sample( zeq(1,nrow(x)), size, replace, prob ), ] )
+    }
+
+    # Sampling zero elements from a zero length vector should be allowed
+    if ( size==0 & length(x)==0 ) { return(vector(mode=mode(x))) }
+
+    # The code from original sample(), minus the silly numeric handling
+    x[.Internal(sample(length(x), size, replace, prob))]
+}
+
+
 #' Return the single (unique) value found in a vector
 #'
 #' Returns the first element in a vector, but only if all the other
@@ -93,4 +119,10 @@ lpad = function(string, width, pad=" ")
 rpad = function(string, width, pad=" ")
 {
     stringr::str_pad(string, width, "right", pad)
+}
+
+bgrep = function(string, pattern)
+{
+    v.match = stringr::str_extract(string, pattern)
+    return(!is.na(v.match))
 }
