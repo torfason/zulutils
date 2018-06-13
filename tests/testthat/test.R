@@ -33,11 +33,8 @@ expect_that(zample(1:10,1), equals(3))
 expect_that(zample(10), equals(10))
 
 #### Test zingle() ####
-
 expect_that( zingle(rep(10,10)), equals(10))
-
 expect_error( zingle(1:2) )
-
 expect_error( zingle(c(1,1,NA,1)) )
 expect_that ( zingle(c(1,1,NA,1), na.rm=TRUE), equals(1) )
 

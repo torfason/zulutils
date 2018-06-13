@@ -25,6 +25,26 @@ dummy = function()
 
 # It would also be useful to add psum, pprod and pmean
 
+
+
+
+#' Generate sequence in a safe way
+#'
+#' This function creates an increasing integer sequence, but differs from
+#' the standard one in that it will not silently generate a decreasing
+#' sequence when the second argument is smaller than the first.
+#' If the second arg is one smaller than the first it will generate
+#' an empty sequence, if the difference is greater, the function will
+#' error out.
+zeq = function(from, to)
+{
+    stopifnot ( round(from) == from )
+    stopifnot ( round(to)   == to   )
+    stopifnot ( to >= from - 1      )
+    return (seq_len(1+to-from)+from-1)
+}
+
+
 #' Sample from a vector or data.frame in a safe way
 #'
 #' This function duplicates the functionality of sample(), with the exception
@@ -70,22 +90,6 @@ zingle = function(x, na.rm = FALSE)
     if (na.rm) x = x[!is.na(x)]
     stopifnot(all(x[1]==x))
     return(x[1])
-}
-
-#' Generate sequence in a safe way
-#'
-#' This function creates an increasing integer sequence, but differs from
-#' the standard one in that it will not silently generate a decreasing
-#' sequence when the second argument is smaller than the first.
-#' If the second arg is one smaller than the first it will generate
-#' an empty sequence, if the difference is greater, the function will
-#' error out.
-zeq = function(from, to)
-{
-    stopifnot ( round(from) == from )
-    stopifnot ( round(to)   == to   )
-    stopifnot ( to >= from - 1      )
-    return (seq_len(1+to-from)+from-1)
 }
 
 #' Replace missing values
