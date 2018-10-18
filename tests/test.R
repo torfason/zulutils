@@ -2,6 +2,8 @@
 
 library(testthat)
 
+library(zulutils)
+
 
 # Dummy tests
 a <- 9
@@ -33,12 +35,15 @@ expect_that(zample(1:10,1), equals(3))
 expect_that(zample(10), equals(10))
 
 #### Test zingle() ####
-expect_that( zingle(rep(10,10)), equals(10))
+expect_that ( zingle(rep(10,10)), equals(10))
+expect_that ( zingle(c(1,1,NA,1), na.rm=TRUE), equals(1) )
 expect_error( zingle(1:2) )
 expect_error( zingle(c(1,1,NA,1)) )
-expect_that ( zingle(c(1,1,NA,1), na.rm=TRUE), equals(1) )
 
 #### Test bgrep() ####
 expect_that( bgrep(letters,"a"), equals(c(TRUE,rep(FALSE,25))))
 expect_that( bgrep(letters,"z"), equals(c(rep(FALSE,25),TRUE)))
 expect_that( bgrep(c("apple","orange","pear"),"r"), equals(c(FALSE,TRUE,TRUE)))
+
+#### Test noop() ####
+expect_that( noop(letters), equals(letters) )

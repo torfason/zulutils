@@ -26,6 +26,15 @@ dummy = function()
 # It would also be useful to add psum, pprod and pmean
 
 
+#' Do return a single argument unchanged
+#'
+#' It can be useful (when developing pipelines for example),
+#' to have acces to a function that simply returns the elemtent
+#' that it receives. This is that function
+noop = function(x)
+{
+    x
+}
 
 
 #' Generate sequence in a safe way
@@ -125,6 +134,13 @@ rpad = function(string, width, pad=" ")
     stringr::str_pad(string, width, "right", pad)
 }
 
+#' Boolean grep function
+#'
+#' This function looks for pattern in each of the elements
+#' of string, returning TRUE for each element that contains
+#' pattern, and FALSE for the other elements. The argument
+#' order follows the conventions of the stringr package,
+#' and the underlying matching is done using stringr::str_extract()
 bgrep = function(string, pattern)
 {
     v.match = stringr::str_extract(string, pattern)
