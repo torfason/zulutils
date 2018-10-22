@@ -31,6 +31,8 @@ dummy = function()
 #' It can be useful (when developing pipelines for example),
 #' to have acces to a function that simply returns the elemtent
 #' that it receives. This is that function
+#'
+#' @export
 noop = function(x)
 {
     x
@@ -45,6 +47,8 @@ noop = function(x)
 #' If the second arg is one smaller than the first it will generate
 #' an empty sequence, if the difference is greater, the function will
 #' error out.
+#'
+#' @export
 zeq = function(from, to)
 {
     stopifnot ( round(from) == from )
@@ -63,6 +67,8 @@ zeq = function(from, to)
 #'
 #' To sample from an interval between 1 and n, simply use safer.sample(1:n)
 #' (or use sample(n) instead)
+#'
+#' @export
 zample = function (x, size=length(x), replace = FALSE, prob = NULL)
 {
     # Special handling to allow sampling from a data.frame
@@ -94,6 +100,8 @@ zample = function (x, size=length(x), replace = FALSE, prob = NULL)
 #'
 #' Optionally takes a na.rm parameter, similarly to sum, mean and
 #' other aggregate functions.
+#'
+#' @export
 zingle = function(x, na.rm = FALSE)
 {
     if (na.rm) x = x[!is.na(x)]
@@ -108,6 +116,8 @@ zingle = function(x, na.rm = FALSE)
 #'
 #' x : vector possibly contining missing (NA) values.
 #' replace : scalar replacement value
+#'
+#' @export
 na.replace = function (x, replace)
 {
     x[is.na(x)] <- replace
@@ -119,6 +129,8 @@ na.replace = function (x, replace)
 #' Left pad a string with whitespace or other characters
 #' in order to get a string of a certain length.
 #' This function is a thin wrapper around stringr::str_pad()
+#'
+#' @export
 lpad = function(string, width, pad=" ")
 {
     stringr::str_pad(string, width, "left", pad)
@@ -129,6 +141,8 @@ lpad = function(string, width, pad=" ")
 #' Right pad a string with whitespace or other characters
 #' in order to get a string of a certain length.
 #' This function is a thin wrapper around stringr::str_pad()
+#'
+#' @export
 rpad = function(string, width, pad=" ")
 {
     stringr::str_pad(string, width, "right", pad)
@@ -141,6 +155,8 @@ rpad = function(string, width, pad=" ")
 #' pattern, and FALSE for the other elements. The argument
 #' order follows the conventions of the stringr package,
 #' and the underlying matching is done using stringr::str_extract()
+#'
+#' @export
 bgrep = function(string, pattern)
 {
     v.match = stringr::str_extract(string, pattern)
