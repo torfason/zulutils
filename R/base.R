@@ -81,7 +81,7 @@ zample = function (x, size=length(x), replace = FALSE, prob = NULL)
     if (class(x) == "data.frame")
     {
         size = ifelse( is.null(size), nrow(x), size )
-        return( x[ safer.sample( zeq(1,nrow(x)), size, replace, prob ), ] )
+        return( x[ zample( zeq(1,nrow(x)), size, replace, prob ), ] )
     }
 
     # Sampling zero elements from a zero length vector should be allowed
