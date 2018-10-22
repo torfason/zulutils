@@ -6,6 +6,11 @@
 \usage{
 bgrep(string, pattern)
 }
+\arguments{
+\item{string}{The (possibly vectorized) string to process}
+
+\item{pattern}{The (possibly vectorized) regexp pattern to use}
+}
 \description{
 This function looks for pattern in each of the elements
 of string, returning TRUE for each element that contains

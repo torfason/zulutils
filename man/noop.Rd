@@ -6,6 +6,12 @@
 \usage{
 noop(x)
 }
+\arguments{
+\item{x}{The single argument to (not) process}
+}
+\value{
+The argument \code{x} is returned unchanged
+}
 \description{
 It can be useful (when developing pipelines for example),
 to have acces to a function that simply returns the elemtent

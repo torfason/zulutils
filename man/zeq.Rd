@@ -6,6 +6,14 @@
 \usage{
 zeq(from, to)
 }
+\arguments{
+\item{from}{The lower bound of the sequence}
+
+\item{to}{The higher bound of the sequence}
+}
+\value{
+A sequence ranging from \code{from} to \code{to}
+}
 \description{
 This function creates an increasing integer sequence, but differs from
 the standard one in that it will not silently generate a decreasing

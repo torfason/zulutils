@@ -32,6 +32,8 @@ dummy = function()
 #' to have acces to a function that simply returns the elemtent
 #' that it receives. This is that function
 #'
+#' @param x The single argument to (not) process
+#' @return The argument \code{x} is returned unchanged
 #' @export
 noop = function(x)
 {
@@ -48,6 +50,9 @@ noop = function(x)
 #' an empty sequence, if the difference is greater, the function will
 #' error out.
 #'
+#' @param from The lower bound of the sequence
+#' @param to   The higher bound of the sequence
+#' @return     A sequence ranging from \code{from} to \code{to}
 #' @export
 zeq = function(from, to)
 {
@@ -63,11 +68,12 @@ zeq = function(from, to)
 #' This function duplicates the functionality of sample(), with the exception
 #' that it does not attempt the (rather silly in my opinion) user-friendliness
 #' of switching the interpretation of the first element to a number if the
-#' length of the vector is 1.
+#' length of the vector is 1.  To sample from an interval between 1 and n,
+#' simply use zample(1:n) (or use sample(n) instead)
 #'
-#' To sample from an interval between 1 and n, simply use safer.sample(1:n)
-#' (or use sample(n) instead)
-#'
+#' @param x       The vector to sample from
+#' @param size    The number of elements to sample from \code{x} (defaults to \code{length(x)})
+#' @param replace Should elements be replaced after sampling (defaults to \code{false})
 #' @export
 zample = function (x, size=length(x), replace = FALSE, prob = NULL)
 {
@@ -156,6 +162,8 @@ rpad = function(string, width, pad=" ")
 #' order follows the conventions of the stringr package,
 #' and the underlying matching is done using stringr::str_extract()
 #'
+#' @param string The (possibly vectorized) string to process
+#' @param pattern The (possibly vectorized) regexp pattern to use
 #' @export
 bgrep = function(string, pattern)
 {
