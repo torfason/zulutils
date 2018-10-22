@@ -146,3 +146,53 @@ bgrep = function(string, pattern)
     v.match = stringr::str_extract(string, pattern)
     return(!is.na(v.match))
 }
+
+
+#' This function implements lookup of certain
+#' strings (such as variable names) from an enframe-type tibble
+#' which maps keys onto values (such as variable descriptions).
+#'
+#' The value added by this function is as follows:
+#'  - All names are cleared from the result
+#'  - Original values are returned if not found in lookup.table
+#'
+#' @param d.enframed data.frame with two columns called "name" and "value"
+#'
+#' @importFrom dplyr %>%
+#' @export
+lookup_enframed = function(x, d.enframed)
+{
+    l.lookup = d.enframed %>% tibble::deframe() %>% as.list()
+    result = l.lookup[x]
+    names(result) = NULL
+    not.found = unlist(lapply(result, is.null))
+    result[not.found] = x[not.found]
+    return(unlist(result))
+}
+
+
+#' Rename tibble columns according to values in another tibble.
+#'
+#' Renames variables from d according to the columns
+#' name (rename from) and value (rename to) in d.framed.
+#'
+#' The expectation is that d.framed has been created
+#' with enframe(), such as
+#' d.framed = enframe(c(froma="To A",fromb="To B"))
+#'
+#' @importFrom dplyr %>%
+#' @importFrom dplyr vars
+#' @export
+rename_enframed = function(d, d.enframed)
+{
+    # Some minor input checking
+    if ( !("data.frame" %in% class(d))          ) stop("rename_enframed(): First argument must be data.frame")
+    if ( !("data.frame" %in% class(d.enframed)) ) stop("rename_enframed(): Second argument must be data.frame")
+    # Remove any extra values from d.framed
+    d.enframed = d.enframed %>%
+        dplyr::filter(d.enframed$name %in% names(d))
+    # Do the renaming of d
+    result = d %>%
+        dplyr::rename_at(dplyr::vars(d.enframed$name), ~d.enframed$value)
+    return(result)
+}
