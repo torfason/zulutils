@@ -2,17 +2,24 @@
 % Please edit documentation in R/base.R
 \name{lookup_enframed}
 \alias{lookup_enframed}
-\title{This function implements lookup of certain
-strings (such as variable names) from an enframe-type tibble
-which maps keys onto values (such as variable descriptions).}
+\title{Lookup values from a two-column tibble}
 \usage{
 lookup_enframed(x, d.enframed)
 }
 \arguments{
-\item{d.enframed}{data.frame with two columns called "name" and "value"}
+\item{x}{A string vector whose elements shall be looked up}
+
+\item{d.enframed}{The (enframed) tibble to use as a lookup table}
+}
+\value{
+A string vector based on \code{x}, with values replaced
+                  with the lookup values from \code{d.enframed}. Any values
+                  not found in the lookup table are returned unchanged.
 }
 \description{
-The value added by this function is as follows:
- - All names are cleared from the result
- - Original values are returned if not found in lookup.table
+This function implements lookup of certain strings (such as
+variable names) from an (enframed) tibble which maps keys
+onto values (such as variable descriptions). Original values
+are returned if they are not found in the lookup tibble.
+Any names in x are not included in the result.
 }

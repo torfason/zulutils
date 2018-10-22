@@ -172,16 +172,19 @@ bgrep = function(string, pattern)
 }
 
 
-#' This function implements lookup of certain
-#' strings (such as variable names) from an enframe-type tibble
-#' which maps keys onto values (such as variable descriptions).
+#' Lookup values from a two-column tibble
 #'
-#' The value added by this function is as follows:
-#'  - All names are cleared from the result
-#'  - Original values are returned if not found in lookup.table
+#' This function implements lookup of certain strings (such as
+#' variable names) from an (enframed) tibble which maps keys
+#' onto values (such as variable descriptions). Original values
+#' are returned if they are not found in the lookup tibble.
+#' Any names in x are not included in the result.
 #'
-#' @param d.enframed data.frame with two columns called "name" and "value"
-#'
+#' @param x          A string vector whose elements shall be looked up
+#' @param d.enframed The (enframed) tibble to use as a lookup table
+#' @return           A string vector based on \code{x}, with values replaced
+#'                   with the lookup values from \code{d.enframed}. Any values
+#'                   not found in the lookup table are returned unchanged.
 #' @importFrom dplyr %>%
 #' @export
 lookup_enframed = function(x, d.enframed)

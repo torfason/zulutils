@@ -19,5 +19,5 @@ Renames variables from d according to the columns
 name (rename from) and value (rename to) in d.framed.
 The expectation is that d.framed has been created
 with \code{enframe()}, such as
-\code{d.framed = enframe(c(a="New A", b="New B"))}
+\code{d.framed = enframe(c(a="New A", b="New B"))}.
 }
