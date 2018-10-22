@@ -6,12 +6,18 @@
 \usage{
 rename_enframed(d, d.enframed)
 }
+\arguments{
+\item{d}{The tibble whose columns we want to rename}
+
+\item{d.enframed}{The (enframed) tibble with the old and new names}
+}
+\value{
+A tibble that is identical to \code{d} but with renamed columns
+}
 \description{
 Renames variables from d according to the columns
 name (rename from) and value (rename to) in d.framed.
-}
-\details{
 The expectation is that d.framed has been created
-with enframe(), such as
-d.framed = enframe(c(froma="To A",fromb="To B"))
+with \code{enframe()}, such as
+\code{d.framed = enframe(c(a="New A", b="New B"))}
 }
