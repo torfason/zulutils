@@ -2,6 +2,9 @@
 # These tests use testthat
 library(testthat)
 
+# We need some tidyverse for now
+library(dplyr)
+
 # The package is required
 library(zulutils)
 
@@ -64,6 +67,13 @@ expect_equal( noop(letters),     letters )
     ))
     x = c("lizard", "cat")
 expect_equal( lookup_enframed(x,d.pets),  c("reptile","mammal")  )
+
+# Order should not matter.
+d.pets.rearranged = d.pets %>%
+    mutate(ga = "ga", rb="rb", age="age") %>%
+    select(ga,name,rb,value,age) %>%
+    print
+expect_equal( lookup_enframed(x,d.pets.rearranged),  c("reptile","mammal")  )
 
 
 #### test rename_enframed() ####

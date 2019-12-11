@@ -181,7 +181,8 @@ bgrep = function(string, pattern)
 #' Any names in x are not included in the result.
 #'
 #' @param x          A string vector whose elements shall be looked up
-#' @param d.enframed The (enframed) tibble to use as a lookup table
+#' @param d.enframed The (enframed) tibble to use as a lookup table. The
+#'                   lookup columns should be named \code{name} and \code{value}.
 #' @return           A string vector based on \code{x}, with values replaced
 #'                   with the lookup values from \code{d.enframed}. Any values
 #'                   not found in the lookup table are returned unchanged.
@@ -189,7 +190,8 @@ bgrep = function(string, pattern)
 #' @export
 lookup_enframed = function(x, d.enframed)
 {
-    l.lookup = d.enframed %>% tibble::deframe() %>% as.list()
+    d = d.enframed %>% dplyr::select(name,value)
+    l.lookup = d %>% tibble::deframe() %>% as.list()
     result = l.lookup[x]
     names(result) = NULL
     not.found = unlist(lapply(result, is.null))
