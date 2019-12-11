@@ -9,7 +9,8 @@ lookup_enframed(x, d.enframed)
 \arguments{
 \item{x}{A string vector whose elements shall be looked up}
 
-\item{d.enframed}{The (enframed) tibble to use as a lookup table}
+\item{d.enframed}{The (enframed) tibble to use as a lookup table. The
+lookup columns should be named \code{name} and \code{value}.}
 }
 \value{
 A string vector based on \code{x}, with values replaced

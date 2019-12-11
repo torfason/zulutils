@@ -3,7 +3,6 @@
 \docType{package}
 \name{zulutils}
 \alias{zulutils}
-\alias{zulutils-package}
 \title{zulutils: Some functions that the author found useful}
 \description{
 This package could just as well have been named yamisc

@@ -2,7 +2,7 @@
 % Please edit documentation in R/base.R
 \name{noop}
 \alias{noop}
-\title{Do return a single argument unchanged}
+\title{Return a single argument unchanged}
 \usage{
 noop(x)
 }
@@ -14,6 +14,6 @@ The argument \code{x} is returned unchanged
 }
 \description{
 It can be useful (when developing pipelines for example),
-to have acces to a function that simply returns the elemtent
-that it receives. This is that function
+to have access to a function that simply returns the element
+that it receives. This is that function.
 }
