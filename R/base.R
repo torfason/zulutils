@@ -26,11 +26,11 @@ dummy = function()
 # It would also be useful to add psum, pprod and pmean
 
 
-#' Do return a single argument unchanged
+#' Return a single argument unchanged
 #'
 #' It can be useful (when developing pipelines for example),
-#' to have acces to a function that simply returns the elemtent
-#' that it receives. This is that function
+#' to have access to a function that simply returns the element
+#' that it receives. This is that function.
 #'
 #' @param x The single argument to (not) process
 #' @return The argument \code{x} is returned unchanged

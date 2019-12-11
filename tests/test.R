@@ -1,12 +1,15 @@
 
+# We need some pipes
+import::from(magrittr, "%>%", "%T>%")
+
 # These tests use testthat
 library(testthat)
 
-# We need some tidyverse for now
-library(dplyr)
-
 # The package is required
 library(zulutils)
+
+
+
 
 #### Dummy tests ####
 # (uncomment next line to force failed test)
@@ -68,11 +71,10 @@ expect_equal( noop(letters),     letters )
     x = c("lizard", "cat")
 expect_equal( lookup_enframed(x,d.pets),  c("reptile","mammal")  )
 
-# Order should not matter.
+# Order should not matter, only the names of the name/value columns.
 d.pets.rearranged = d.pets %>%
-    mutate(ga = "ga", rb="rb", age="age") %>%
-    select(ga,name,rb,value,age) %>%
-    print
+    dplyr::mutate(ga = "ga", rb="rb", age="age") %>%
+    dplyr::select(ga,name,rb,value,age)
 expect_equal( lookup_enframed(x,d.pets.rearranged),  c("reptile","mammal")  )
 
 
