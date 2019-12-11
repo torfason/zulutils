@@ -227,3 +227,32 @@ rename_enframed = function(d, d.enframed)
         dplyr::rename_at(dplyr::vars(d.enframed$name), ~d.enframed$value)
     return(result)
 }
+
+#' Get all the variable labels of a labelled tibble in an enframed tibble
+#'
+#' Given a data tibble/data.frame, this function will return a tibble in
+#' enframed format (two columns named name and value), where the name
+#' column contains the names of the variables in the original tibble and
+#' the value column contains the labels. This can be used to review the
+#' labels, and (if coupled with a set_labels_enframed function) could be
+#' used to preserve labels across label-destructive operations, or export
+#' labels to a file (or a sheet in an excel file). Finally, it could be
+#' used with rename_enframed() in a pipe to replace the names of variables
+#' with their labels for display in a plot or table function that does not
+#' support the display of labels in a simple way.
+#'
+#' @param d          The tibble whose columns have variable labels
+#' @return           A tibble in enframed format containing variable names and labels
+#' @export
+get_labels_enframed = function(d)
+{
+    # This used to be called zt.codebook
+    #
+    # An alternative codebook function is in memisc:
+    # memisc::codebook(...)
+
+    v.names  = names(d)
+    v.labels = sapply( d, attr, which="label" )
+    d.result = tibble(name=v.names,value=v.labels)
+    return(d.result)
+}
