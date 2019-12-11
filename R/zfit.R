@@ -29,21 +29,31 @@
 #'   zlm(Sepal.Length ~ Sepal.Width + Petal.Width)
 #'
 #' @export
+#'
 zlm = function(data, formula, ...) {
     lm(formula=formula, ..., data=data)
 }
 
 #' Run a glm model in a pipe (see \code{zlm})
+#'
+#' @export
+#'
 zglm = function(data, formula, ...) {
     glm(formula=formula, ..., data=data)
 }
 
 #' Run a logit model in a pipe (see \code{zlm})
+#'
+#' @export
+#'
 zlogit = function(data, formula, ...) {
     glm(formula=formula, family=binomial(link="logit"), ..., data=data)
 }
 
 #' Run a probit model in a pipe (see \code{zlm})
+#'
+#' @export
+#'
 zprobit = function(data, formula, ...) {
     glm(formula=formula, family=binomial(link="probit"), ..., data=data)
 }
@@ -77,6 +87,7 @@ zprobit = function(data, formula, ...) {
 #' sw_subset  # sw_subset is ungrouped, but filtered by homeworld
 #'
 #' @export
+#'
 zprint = function(x, f, ...) {
     print(f(x, ...))
     return(x)

@@ -6,6 +6,9 @@
 #'
 #' @param target Name of the target
 #' @return       Size of the target
+#'
+#' @export
+#'
 get_drake_target_size <- function(target) {
     cache <- drake::get_cache() # or storr::storr_rds(".drake")
     root  <- cache$driver$path
@@ -25,6 +28,9 @@ get_drake_target_size <- function(target) {
 #'
 #' @param my_plan Name of the plan from which to get target names
 #' @return        Tibble containing names and sizes of the targets
+#'
+#' @export
+#'
 get_drake_target_sizes <- function(my_plan) {
     result <- tibble::tibble( target = my_plan$target,
                              size = sapply(my_plan$target, get_drake_target_size))
