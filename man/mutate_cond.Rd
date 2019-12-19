@@ -9,3 +9,8 @@ mutate_cond(.data, condition, ..., envir = parent.frame())
 \description{
 https://stackoverflow.com/questions/34096162/dplyr-mutate-replace-on-a-subset-of-rows
 }
+\seealso{
+Other zuluverse: 
+\code{\link{move}()}
+}
+\concept{zuluverse}

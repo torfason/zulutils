@@ -39,3 +39,8 @@ move(iris2, one_of("Sepal.Width","Species"), Sepal.Width)
 move(iris2, starts_with("Petal"), Sepal.Width)
 
 }
+\seealso{
+Other zuluverse: 
+\code{\link{mutate_cond}()}
+}
+\concept{zuluverse}

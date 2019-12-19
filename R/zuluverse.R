@@ -1,20 +1,11 @@
-# zuluverse - Currently part of zulutils
-#
-# A collection of utility functions applicable to the tidyverse.
-# Hopefully this will remain a pretty small collection.
-#
-# Some useful keyboard shortcuts for package authoring:
-#   Build and Reload Package:  'Cmd + Shift + B'
-#   Check Package:             'Cmd + Shift + E'
-#   Test Package:              'Cmd + Shift + T'
 
-
-
+# A set of utility functions related to dplyr and the tidyverse
 
 #' Mutate only rows of data.frame/tibble that satisfy condition
 #'
 #' https://stackoverflow.com/questions/34096162/dplyr-mutate-replace-on-a-subset-of-rows
 #'
+#' @family zuluverse
 #' @export
 #'
 mutate_cond <- function(.data, condition, ..., envir = parent.frame())
@@ -24,7 +15,6 @@ mutate_cond <- function(.data, condition, ..., envir = parent.frame())
     .data[condition, ] <- .data[condition, ] %>% mutate(...)
     .data
 }
-
 
 #' Move column or selection of columns
 #'
@@ -53,6 +43,7 @@ mutate_cond <- function(.data, condition, ..., envir = parent.frame())
 #' move(iris2, one_of("Sepal.Width","Species"), Sepal.Width)
 #' move(iris2, starts_with("Petal"), Sepal.Width)
 #'
+#' @family zuluverse
 #' @export
 #'
 move <- function(data, cols, ref, side = c("before","after")){
