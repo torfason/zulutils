@@ -26,3 +26,11 @@ iris \%>\%
   zlm(Sepal.Length ~ Sepal.Width + Petal.Width)
 
 }
+\seealso{
+Other zfit: 
+\code{\link{zglm}()},
+\code{\link{zlogit}()},
+\code{\link{zprint}()},
+\code{\link{zprobit}()}
+}
+\concept{zfit}

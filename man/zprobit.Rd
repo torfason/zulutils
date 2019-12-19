@@ -9,3 +9,11 @@ zprobit(data, formula, ...)
 \description{
 Run a probit model in a pipe (see \code{zlm})
 }
+\seealso{
+Other zfit: 
+\code{\link{zglm}()},
+\code{\link{zlm}()},
+\code{\link{zlogit}()},
+\code{\link{zprint}()}
+}
+\concept{zfit}

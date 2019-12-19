@@ -35,3 +35,11 @@ sw_subset <- starwars \%>\%
 sw_subset  # sw_subset is ungrouped, but filtered by homeworld
 
 }
+\seealso{
+Other zfit: 
+\code{\link{zglm}()},
+\code{\link{zlm}()},
+\code{\link{zlogit}()},
+\code{\link{zprobit}()}
+}
+\concept{zfit}

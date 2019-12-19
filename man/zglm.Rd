@@ -9,3 +9,11 @@ zglm(data, formula, ...)
 \description{
 Run a glm model in a pipe (see \code{zlm})
 }
+\seealso{
+Other zfit: 
+\code{\link{zlm}()},
+\code{\link{zlogit}()},
+\code{\link{zprint}()},
+\code{\link{zprobit}()}
+}
+\concept{zfit}

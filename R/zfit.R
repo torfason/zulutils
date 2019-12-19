@@ -28,6 +28,7 @@
 #'   filter(Species=="setosa") %>%
 #'   zlm(Sepal.Length ~ Sepal.Width + Petal.Width)
 #'
+#' @family zfit
 #' @export
 #'
 zlm = function(data, formula, ...) {
@@ -36,6 +37,7 @@ zlm = function(data, formula, ...) {
 
 #' Run a glm model in a pipe (see \code{zlm})
 #'
+#' @family zfit
 #' @export
 #'
 zglm = function(data, formula, ...) {
@@ -44,6 +46,7 @@ zglm = function(data, formula, ...) {
 
 #' Run a logit model in a pipe (see \code{zlm})
 #'
+#' @family zfit
 #' @export
 #'
 zlogit = function(data, formula, ...) {
@@ -52,6 +55,7 @@ zlogit = function(data, formula, ...) {
 
 #' Run a probit model in a pipe (see \code{zlm})
 #'
+#' @family zfit
 #' @export
 #'
 zprobit = function(data, formula, ...) {
@@ -86,6 +90,7 @@ zprobit = function(data, formula, ...) {
 #'   filter(homeworld=="Tatooine")
 #' sw_subset  # sw_subset is ungrouped, but filtered by homeworld
 #'
+#' @family zfit
 #' @export
 #'
 zprint = function(x, f, ...) {

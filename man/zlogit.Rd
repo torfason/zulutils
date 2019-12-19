@@ -9,3 +9,11 @@ zlogit(data, formula, ...)
 \description{
 Run a logit model in a pipe (see \code{zlm})
 }
+\seealso{
+Other zfit: 
+\code{\link{zglm}()},
+\code{\link{zlm}()},
+\code{\link{zprint}()},
+\code{\link{zprobit}()}
+}
+\concept{zfit}
