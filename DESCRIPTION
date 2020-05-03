@@ -1,7 +1,7 @@
 Package: zulutils
 Type: Package
 Title: Miscellaneous utility functions that the author found useful
-Version: 0.3.1
+Version: 0.3.2
 Author: Magnus Thor Torfason
 Maintainer: Magnus Thor Torfason <m@zulutime.net>
 Description: 
