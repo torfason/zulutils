@@ -33,3 +33,13 @@ gg_apply_labs <- function(p, fun) {
     p$labels <- lapply(p$labels, fun)
     p
 }
+
+
+
+# Apply integer breaks to a graph
+
+#' @family zulugg
+#' @export
+gg_integer_breaks <-function(x){
+    unique(floor(pretty(seq(0, (max(x) + 1) * 1.1))))
+}
