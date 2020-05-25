@@ -16,7 +16,9 @@
 #'
 #' @examples
 #' # This uses snakecase::to_sentence_case to prettify the labels
-#' # Note: The plot is assigned to a named variable before piping to apply_labs()
+#' # Note: The plot is assigned to a named variable before piping to gg_apply_labs()
+#' #       This is to avoid issues due to the precedence of operators,
+#' #       (%>% has higher precedence than +)
 #' library(tidyverse)
 #' library(snakecase)
 #' p <- starwars %>%
