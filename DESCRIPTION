@@ -1,7 +1,7 @@
 Package: zulutils
 Type: Package
 Title: Miscellaneous utility functions that the author found useful
-Version: 0.3.2
+Version: 0.3.3
 Author: Magnus Thor Torfason
 Maintainer: Magnus Thor Torfason <m@zulutime.net>
 Description: 
@@ -16,7 +16,8 @@ LazyData: true
 Imports:
     stringr (>= 1.2.0),
     dplyr,
-    tibble
-RoxygenNote: 7.0.2
+    tibble,
+    magrittr
+RoxygenNote: 7.1.1
 Suggests: 
     testthat (>= 2.1.0)

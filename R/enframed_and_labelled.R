@@ -1,29 +1,62 @@
 
-#' Lookup values from a two-column tibble
+##
+## Functions for working with enframed and/or labelled tibbles
+##
+
+#' Lookup values from a lookup table
 #'
 #' This function implements lookup of certain strings (such as
-#' variable names) from an (enframed) tibble which maps keys
+#' variable names) from an lookup table which maps keys
 #' onto values (such as variable descriptions). Original values
-#' are returned if they are not found in the lookup tibble.
+#' are returned if they are not found in the lookup table.
+#'
+#' The lookup table can be in the form of an enframed data.frame,
+#' in the form of a named vector, or in the form of a list.
+#'
 #' Any names in x are not included in the result.
 #'
-#' @param x          A string vector whose elements shall be looked up
-#' @param d.enframed The (enframed) tibble to use as a lookup table. The
-#'                   lookup columns should be named \code{name} and \code{value}.
-#' @return           A string vector based on \code{x}, with values replaced
-#'                   with the lookup values from \code{d.enframed}. Any values
+#' @param x            A string vector whose elements shall be looked up
+#' @param lookup_table The lookup table to use. If the table is in the form of
+#'                     a data.frame, the lookup columns should be named
+#'                     \code{name} (for the key) and \code{value} (for the value).
+#'                     If the lookup table is in the form of a named vector or list,
+#'                     the name is used for the key, and the returned value is
+#'                     taken from the values in the vector or list.
+#' @return             A string vector based on \code{x}, with values replaced
+#'                       with the lookup values from \code{d.enframed}. Any values
 #'                   not found in the lookup table are returned unchanged.
 #' @importFrom dplyr %>%
 #' @export
-lookup_enframed = function(x, d.enframed)
+lookup = function(x, lookup_table)
 {
-    d = d.enframed %>% dplyr::select(name,value)
-    l.lookup = d %>% tibble::deframe() %>% as.list()
-    result = l.lookup[x]
-    names(result) = NULL
-    not.found = unlist(lapply(result, is.null))
-    result[not.found] = x[not.found]
-    return(unlist(result))
+  if ( is.data.frame(lookup_table) ) {
+    stopifnot(
+      "name"  %in% names(lookup_table),
+      "value" %in% names(lookup_table)
+    )
+    lookup_table <- tibble::deframe(lookup_table[,c("name","value")] )
+  }
+  if ( is.vector(lookup_table) && !is.list(lookup_table)) {
+    stopifnot( is.character(lookup_table) )
+    lookup_table <- as.list(lookup_table)
+  }
+  stopifnot( is.list(lookup_table) )
+  result = lookup_table[x]
+  names(result) = NULL
+  not.found = unlist(lapply(result, is.null))
+  result[not.found] = x[not.found]
+  unlist(result)
+}
+
+
+#' @rdname zulutils-deprecated
+#' @section \code{lookup_enframed}:
+#' \code{lookup_enframed()} is deprecated in favor of \code{\link{lookup()}}.
+#'
+#' @export
+lookup_enframed <- function(x, lookup_table) {
+  .Deprecated("lookup", msg="lookup_enframed() is deprecated in favor of lookup().")
+  lookup(x, lookup_table)
 }
 
 

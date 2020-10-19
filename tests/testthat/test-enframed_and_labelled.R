@@ -1,25 +1,34 @@
 
 
+#### test lookup() ####
+test_that("lookup works", {
+
+  # Extremely simple test with letters
+  expect_equal(lookup(letters, c(a="A",b="B")), c("A","B",letters[3:26]))
+
+  # Validation data
+  d.pets = tibble::enframe(c(
+    cat="mammal",
+    lizard="reptile",
+    parrot="bird"
+  ))
+  x.species  = c("lizard", "cat")
+  x.kingdoms = c("reptile","mammal")
+
+  # Standard lookup
+  expect_equal( lookup(x.species,d.pets),  x.kingdoms  )
+
+  # Order should not matter, only the names of the name/value columns.
+  d.pets.rearranged = d.pets %>%
+    dplyr::mutate(ga = "ga", rb="rb", age="age") %>%
+    dplyr::select(ga,name,rb,value,age)
+  expect_equal( lookup(x.species,d.pets.rearranged),  x.kingdoms)
+})
+
+
 #### test lookup_enframed() ####
-test_that("lookup_enframed works", {
-
-    # Validation data
-    d.pets = tibble::enframe(c(
-        cat="mammal",
-        lizard="reptile",
-        parrot="bird"
-    ))
-    x.species  = c("lizard", "cat")
-    x.kingdoms = c("reptile","mammal")
-
-    # Standard lookup
-    expect_equal( lookup_enframed(x.species,d.pets),  x.kingdoms  )
-
-    # Order should not matter, only the names of the name/value columns.
-    d.pets.rearranged = d.pets %>%
-        dplyr::mutate(ga = "ga", rb="rb", age="age") %>%
-        dplyr::select(ga,name,rb,value,age)
-    expect_equal( lookup_enframed(x.species,d.pets.rearranged),  x.kingdoms)
+test_that("lookup_enframed is deprecated", {
+  expect_warning(lookup_enframed(letters, c(a="A",b="B")))
 })
 
 #### test rename_enframed() ####

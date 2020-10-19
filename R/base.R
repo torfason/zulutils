@@ -1,22 +1,7 @@
 
-# Welcome to the zulutils package
-#
-# This is the base soure file for the zulutils package
-#
-# Reference for package authoring with RStudio at:
-#
-#   http://r-pkgs.had.co.nz/
-#
-# Useful keyboard shortcuts for package authoring:
-#
-#   Build and Reload Package:  'Cmd + Shift + B'
-#   Check Package:             'Cmd + Shift + E'
-#   Test Package:              'Cmd + Shift + T'
-#
-# Roxygen documentation:
-#
-#   https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html
-
+##
+## Default source file for functions in the zulutils package
+##
 
 # It would also be useful to add psum, pprod and pmean
 
@@ -111,16 +96,41 @@ zingle = function(x, na.rm = FALSE)
 
 #' Replace missing values
 #'
-#' Usage: na.replace(x, replace)
-#' Arguments
+#' @usage na_replace(x, replace)
 #'
-#' x : vector possibly contining missing (NA) values.
-#' replace : scalar replacement value
+#' @param x Vector possibly contining missing (NA) values.
+#' @param replace Scalar replacement value
+#' @return Copy of x with any missing values replaced with replace
+#'
+#' @family na_functions
 #'
 #' @export
-na.replace = function (x, replace)
+na_replace = function (x, replace)
 {
     x[is.na(x)] <- replace
+    x
+}
+
+#' @rdname zulutils-deprecated
+#' @section \code{na.replace}:
+#' \code{na.replace()} is deprecated in favor of \code{\link{na_replace()}}.
+#'
+#' @export
+na.replace <- function(x, replace) {
+  .Deprecated("na_replace", msg="na.replace() is deprecated in favor of na_replace().")
+  na_replace(x, replace)
+}
+
+#' Replace values in x that are contained in y with NA
+#'
+#' This function is a variant/extension of dplyr::na_if()
+#'
+#' @family na_functions
+#'
+#' @export
+na_if_in <- function(x,y)
+{
+    x[x %in% y] <- NA
     x
 }
 

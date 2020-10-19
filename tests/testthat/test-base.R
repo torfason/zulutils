@@ -108,10 +108,16 @@ test_that("zingle works", {
     expect_error( zingle(c(NA,NA,NA,NA,NA)) )
 })
 
+#### Test na_replace() ####
+test_that("na_replace works", {
+  na_replace(c(1, 2, NA, 4, 5, NA), 3) %>%
+    expect_equal(c(1:5, 3))
+})
 
 #### Test na.replace() ####
-test_that("na.replace works", {
-    expect_equal(na.replace(c(1,2,NA,4,5,NA),3), c(1:5,3))
+test_that("na.replace is deprecated", {
+  expect_warning(na.replace(c(1, 2, NA, 4, 5, NA), 3)) %>%
+    expect_equal(c(1:5,3))
 })
 
 #### Test lpad() and rpad() ####
