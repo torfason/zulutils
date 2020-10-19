@@ -36,4 +36,9 @@ p <- starwars \%>\%
 p \%>\% gg_apply_labs(snakecase::to_sentence_case)
 
 }
+\seealso{
+Other zulugg: 
+\code{\link{gg_apply}()},
+\code{\link{gg_integer_breaks}()}
+}
 \concept{zulugg}
