@@ -3,6 +3,7 @@
 export("%$%")
 export("%>%")
 export(bgrep)
+export(dhondt)
 export(get_drake_target_size)
 export(get_drake_target_sizes)
 export(get_labels_enframed)
