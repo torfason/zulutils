@@ -7,14 +7,18 @@
 bgrep(string, pattern)
 }
 \arguments{
-\item{string}{The (possibly vectorized) string to process}
+\item{string}{The (possibly vectorized) string to process.}
 
-\item{pattern}{The (possibly vectorized) regexp pattern to use}
+\item{pattern}{The (possibly vectorized) regexp pattern to use.}
+}
+\value{
+A vector with boolean values indicating in which elements
+of \code{string} matched the corresponding elements in \code{pattern}.
 }
 \description{
 This function looks for pattern in each of the elements
 of string, returning TRUE for each element that contains
 pattern, and FALSE for the other elements. The argument
 order follows the conventions of the stringr package,
-and the underlying matching is done using stringr::str_extract()
+and the underlying matching is done using \code{\link[stringr:str_extract]{stringr::str_extract()}}
 }

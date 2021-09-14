@@ -7,16 +7,24 @@
 zample(x, size = length(x), replace = FALSE, prob = NULL)
 }
 \arguments{
-\item{x}{The vector to sample from}
+\item{x}{The vector to sample from.}
 
-\item{size}{The number of elements to sample from \code{x} (defaults to \code{length(x)})}
+\item{size}{The number of elements to sample from \code{x}. (defaults to \code{length(x)})}
 
-\item{replace}{Should elements be replaced after sampling (defaults to \code{false})}
+\item{replace}{Should elements be replaced after sampling. (defaults to \code{FALSE})}
+
+\item{prob}{Vector specifying the probabilities. (defaults to \code{NULL} for equal probailities)}
+}
+\value{
+A sample of elements from the vector \code{x}.
 }
 \description{
-This function duplicates the functionality of sample(), with the exception
+This function duplicates the functionality of \code{\link[base:sample]{base::sample()}}, with the exception
 that it does not attempt the (rather silly in my opinion) user-friendliness
 of switching the interpretation of the first element to a number if the
 length of the vector is 1.  To sample from an interval between 1 and n,
-simply use zample(1:n) (or use sample(n) instead)
+simply use zample(1:n) (or use sample(n) instead).
+}
+\seealso{
+\code{\link[base:sample]{base::sample()}}
 }

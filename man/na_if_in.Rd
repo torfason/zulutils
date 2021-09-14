@@ -2,12 +2,26 @@
 % Please edit documentation in R/base.R
 \name{na_if_in}
 \alias{na_if_in}
-\title{Replace values in x that are contained in y with NA}
+\title{Replace values in x that are contained in y with NA.}
 \usage{
 na_if_in(x, y)
 }
+\arguments{
+\item{x}{Vector to modify.}
+
+\item{y}{Value to replace with \code{NA}.}
+}
+\value{
+A modified version of \code{x} that replaces any values that are found in \code{y} with \code{NA}.
+}
 \description{
-This function is a variant/extension of dplyr::na_if()
+This function is a variant/extension of \code{\link[dplyr:na_if]{dplyr::na_if()}}.
+Whereas that version requires \code{y} to be of length one,
+this function allows \code{y} to be a vector and replaces any
+elements of \code{x} that are found in \code{y} with \code{NA} values.
+
+This function can be very useful when cleaning data and
+setting multiple any annoying values to NA.
 }
 \seealso{
 Other na_functions: 

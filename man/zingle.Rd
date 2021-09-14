@@ -6,6 +6,14 @@
 \usage{
 zingle(x, na.rm = FALSE)
 }
+\arguments{
+\item{x}{Vector which chould only include identical values.}
+
+\item{na.rm}{Will NAs be removed before checking. (defaults to FALSE)}
+}
+\value{
+The single unique element in \code{x}, or error if all elements are not identical.
+}
 \description{
 Returns the first element in a vector, but only if all the other
 elements are identical to the first one (the vector only has a
@@ -18,6 +26,8 @@ This is a useful function in aggregations when
 all values in a given group should be identical, but
 you want to make sure.
 
-Optionally takes a na.rm parameter, similarly to sum, mean and
-other aggregate functions.
+Optionally takes a \code{na.rm} parameter, similarly to \code{sum}, \code{mean} and
+other aggregate functions. If \code{na.rm} is \code{TRUE}, a vector with a single
+unique value but some \code{NA} values mixed in is OK, because the \code{NAs} will
+be removed before checks are performed.
 }

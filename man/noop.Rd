@@ -7,13 +7,13 @@
 noop(x)
 }
 \arguments{
-\item{x}{The single argument to (not) process}
+\item{x}{The single argument to (not) process.}
 }
 \value{
-The argument \code{x} is returned unchanged
+The argument \code{x} is returned unchanged.
 }
 \description{
-It can be useful (when developing pipelines for example),
+It can often be useful (when developing pipelines for example),
 to have access to a function that simply returns the element
 that it receives. This is that function.
 }

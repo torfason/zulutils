@@ -11,14 +11,14 @@ lpad(string, width, pad = " ")
 rpad(string, width, pad = " ")
 }
 \arguments{
-\item{string}{Character vector to pad}
+\item{string}{Character vector to pad.}
 
-\item{width}{How many characters at minimum in the output}
+\item{width}{How many characters at minimum in the output.}
 
-\item{pad}{The string to pad with}
+\item{pad}{The string to pad with.}
 }
 \description{
 Left or right pad a string with space or other
 characters in order to get a string of a certain length.
-This function is a thin wrapper around stringr::str_pad()
+This function is a thin wrapper around \code{\link[stringr:str_pad]{stringr::str_pad()}}.
 }

@@ -28,11 +28,11 @@ by ordering the \code{votes} vector prior to calling the function.}
 }
 \value{
 An integer vector with allocations of seats to parties, in
-  the same order as the parties were specified in the \code{votes}
-  vector. The length of the result vector always equals the length
-  of the \code{votes} vector. The sum of the result vector always
-  equals the value in \code{seats}. If the \code{votes} vector
-  has names, the results vector has the same names.
+the same order as the parties were specified in the \code{votes}
+vector. The length of the result vector always equals the length
+of the \code{votes} vector. The sum of the result vector always
+equals the value in \code{seats}. If the \code{votes} vector
+has names, the results vector has the same names.
 }
 \description{
 Allocate a discrete number of seats (or other resources) between
@@ -42,7 +42,7 @@ Semi-proportionality is achieved with the D'Hondt method, which is
 a commonly used approach in electoral allocation.
 
 Other implementations of D'Hondt allocation in \code{R} can be found
-in \code{electoral::seats_ha()} and \code{coalitions::dHondt()}. The
+in \code{\link[electoral:seats_highest_averages]{electoral::seats_ha()}} and \code{\link[coalitions:dHondt]{coalitions::dHondt()}}. The
 motivation behind this implementation is to have a simple interface
 with reasonable defaults, suitable for use in pipes operating on
 data in data.frames or tibbles. Party names are also optional,

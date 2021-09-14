@@ -7,12 +7,12 @@
 na_replace(x, replace)
 }
 \arguments{
-\item{x}{Vector possibly contining missing (NA) values.}
+\item{x}{Vector possibly contining missing (\code{NA}) values.}
 
-\item{replace}{Scalar replacement value}
+\item{replace}{Scalar replacement value.}
 }
 \value{
-Copy of x with any missing values replaced with replace
+Copy of x with any missing values replaced with replace.
 }
 \description{
 Replace missing values

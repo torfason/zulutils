@@ -37,7 +37,7 @@ The functions listed below are deprecated and will be defunct
 }
 \section{\code{na.replace}}{
 
-\code{na.replace()} is deprecated in favor of \code{\link{na_replace()}}.
+\code{na.replace()} is deprecated in favor of \code{\link[=na_replace]{na_replace()}}.
 }
 
 \section{\code{lookup_enframed}}{
