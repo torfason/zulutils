@@ -134,24 +134,25 @@ na_if_in <- function(x,y)
     x
 }
 
-#' Left pad string with whitespace or other characters
+#' Pad string with space or other characters
 #'
-#' Left pad a string with whitespace or other characters
-#' in order to get a string of a certain length.
+#' Left or right pad a string with space or other
+#' characters in order to get a string of a certain length.
 #' This function is a thin wrapper around stringr::str_pad()
 #'
+#' @param string Character vector to pad
+#' @param width How many characters at minimum in the output
+#' @param pad The string to pad with
+#' @rdname padding
+#' @name   padding
 #' @export
 lpad = function(string, width, pad=" ")
 {
     stringr::str_pad(string, width, "left", pad)
 }
 
-#' Right pad string with whitespace or other characters
-#'
-#' Right pad a string with whitespace or other characters
-#' in order to get a string of a certain length.
-#' This function is a thin wrapper around stringr::str_pad()
-#'
+#' @rdname padding
+#' @name   padding
 #' @export
 rpad = function(string, width, pad=" ")
 {
