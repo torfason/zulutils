@@ -73,7 +73,7 @@ zample = function (x, size=length(x), replace = FALSE, prob = NULL)
     if ( size==0 & length(x)==0 ) { return(vector(mode=mode(x))) }
 
     # The code from original sample(), minus the silly numeric handling
-    x[.Internal(sample(length(x), size, replace, prob))]
+    x[sample.int(length(x), size, replace, prob)]
 }
 
 
