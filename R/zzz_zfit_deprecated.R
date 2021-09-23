@@ -44,16 +44,6 @@ zprobit <- function(data, formula, ...) {
 }
 
 #' @rdname zulutils-deprecated
-#' @section \code{zn}:
-#' \code{zn()} is deprecated in favor of \code{\link{zfit::zn()}}.
-#'
-#' @export
-zn <- function(x, ..., labels=FALSE) {
-  .Deprecated("zn", msg="zlogit() is deprecated in favor of zfit::zn().")
-  zfit::zn(x, ..., labels=FALSE)
-}
-
-#' @rdname zulutils-deprecated
 #' @section \code{zprint}:
 #' \code{zprint()} is deprecated in favor of \code{\link{zfit::zprint()}}.
 #'

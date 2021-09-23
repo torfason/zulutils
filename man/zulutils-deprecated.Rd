@@ -9,7 +9,6 @@
 \alias{zglm}
 \alias{zlogit}
 \alias{zprobit}
-\alias{zn}
 \alias{zprint}
 \title{Deprecated functions in package \pkg{zulutils}.}
 \usage{
@@ -24,8 +23,6 @@ zglm(data, formula, ...)
 zlogit(data, formula, ...)
 
 zprobit(data, formula, ...)
-
-zn(x, ..., labels = FALSE)
 
 zprint(x, f, ...)
 }
@@ -63,11 +60,6 @@ The functions listed below are deprecated and will be defunct
 \section{\code{zprobit}}{
 
 \code{zprobit()} is deprecated in favor of \code{\link{zfit::zprobit()}}.
-}
-
-\section{\code{zn}}{
-
-\code{zn()} is deprecated in favor of \code{\link{zfit::zn()}}.
 }
 
 \section{\code{zprint}}{
