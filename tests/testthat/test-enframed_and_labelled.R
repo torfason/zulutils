@@ -26,6 +26,36 @@ test_that("lookup works", {
 })
 
 
+#### test lookuper() ####
+test_that("lookuper works", {
+
+  # Extremely simple test with letters
+  lookup_letters <- lookuper(c(a = "A", b = "B"))
+  expect_equal(lookup_letters(letters), c("A", "B", letters[3:26]))
+
+  # Validation data
+  d.pets <- tibble::enframe(c(
+    cat = "mammal",
+    lizard = "reptile",
+    parrot = "bird"
+  ))
+  x.species <- c("lizard", "cat")
+  x.kingdoms <- c("reptile", "mammal")
+
+  # Standard lookup
+  lookup_pets <- lookuper(d.pets)
+  expect_equal(lookup_pets(x.species), x.kingdoms)
+
+  # Order should not matter, only the names of the name/value columns.
+  d.pets.rearranged <- d.pets %>%
+    dplyr::mutate(ga = "ga", rb = "rb", age = "age") %>%
+    dplyr::select(ga, name, rb, value, age)
+  lookup_pets_rearranged <- lookuper(d.pets.rearranged)
+  expect_equal(lookup_pets_rearranged(x.species), x.kingdoms)
+})
+
+
+
 #### test lookup_enframed() ####
 test_that("lookup_enframed is deprecated", {
   expect_warning(lookup_enframed(letters, c(a="A",b="B")))

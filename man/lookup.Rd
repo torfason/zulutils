@@ -18,8 +18,8 @@ taken from the values in the vector or list.}
 }
 \value{
 A string vector based on \code{x}, with values replaced
-                      with the lookup values from \code{d.enframed}. Any values
-                  not found in the lookup table are returned unchanged.
+with the lookup values from \code{lookup_table}. Any values
+not found in the lookup table are returned unchanged.
 }
 \description{
 This function implements lookup of certain strings (such as
