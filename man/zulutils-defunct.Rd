@@ -13,7 +13,7 @@ The functions listed below are defunct. When possible,
 }
 \section{\code{move}}{
 
-\code{move()} is defunct. Use \code{\link{dplyr::relocate()}}.
+\code{move()} is defunct. Use \code{\link[dplyr:relocate]{dplyr::relocate()}}.
 }
 
 \keyword{internal}

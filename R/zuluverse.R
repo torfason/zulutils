@@ -20,9 +20,10 @@ mutate_cond <- function(.data, condition, ..., envir = parent.frame())
 
 
 #' @rdname zulutils-defunct
-#' @section \code{move}:
-#' \code{move()} is defunct. Use \code{\link{dplyr::relocate()}}.
+#' @section `move`:
+#' `move()` is defunct. Use [dplyr::relocate()].
 #'
+#' @md
 #' @export
 move <- function(...) {
   .Defunct("relocate", package = "dplyr", msg="move() is defunct. Use dplyr::relocate().")

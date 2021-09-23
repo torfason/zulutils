@@ -1,4 +1,10 @@
 
+# https://github.com/r-lib/tidyselect/issues/201
+utils::globalVariables("where")
+
+# R CMD check static checking does not understand textConnection receivers
+utils::globalVariables("level_string")
+utils::globalVariables("spec_string")
 
 #' Construct code to use as col_spec for factors
 #'
@@ -30,10 +36,11 @@
 #' @return    A string with definitions suitable for defining a col_spec,
 #'            after any needed editing to reorder factors.
 #' @md
+#' @importFrom dplyr select
 #' @export
 factor_spec <- function(d) {
 
-  d <- dplyr::select(d, where(is.character))
+  d <- select(d, where(is.character))
   all_spec       <- lapply(d, function(x){sort(unique(x))})#  %>% print()
   unique_spec    <- unique(all_spec)# %>% print()
   srt_levelcount <- sapply(unique_spec,length) # Number of levels in this spec
@@ -44,8 +51,10 @@ factor_spec <- function(d) {
   # and then increasing by the number of levels in the spec
   unique_spec   <- unique_spec[order(-srt_varcount, srt_levelcount)]
 
-  level_conn <- textConnection("level_string", "w")
-  spec_conn  <- textConnection("spec_string", "w")
+  # Define connections (and the receiving variables to please R CMD check)
+  level_conn   <- textConnection("level_string", "w")
+  spec_conn    <- textConnection("spec_string", "w")
+
   # Write each unique factor level to variable
   for (i in zeq(1,length(unique_spec))) {
 

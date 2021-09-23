@@ -252,6 +252,9 @@ bgrep = function(string, pattern)
 #' dhondt(c(liberals=4876, conservatives=5212, greens=2349), seats=21)
 #'
 #' @md
+#' @importFrom rlang .data
+#' @importFrom tibble tibble
+#' @importFrom dplyr arrange mutate desc group_by summarize
 #' @export
 dhondt <- function(votes, seats=7, ties=c("error","first")) {
 
@@ -270,12 +273,12 @@ dhondt <- function(votes, seats=7, ties=c("error","first")) {
 
   # Prepare a tibble with the results
   parties <- seq_along(votes)
-  score_table <- tibble::tibble(
+  score_table <- tibble(
     parties = rep( parties, each = seats ),
     scores  = as.vector(sapply( votes, function(x) {x / zeq(1,seats)} ))
   ) %>%
-    dplyr::arrange(desc(scores)) %>% # We assume arrange is stable so first party wins
-    dplyr::mutate(allocated=c(rep(1L,seats), rep(0L,(seats*length(votes)-seats))))
+    arrange(desc(.data$scores)) %>% # We assume arrange is stable so first party wins
+    mutate(allocated=c(rep(1L,seats), rep(0L,(seats*length(votes)-seats))))
 
   # Handle ties
   score_last_in   <- score_table$scores[seats]
@@ -303,8 +306,8 @@ dhondt <- function(votes, seats=7, ties=c("error","first")) {
 
   # Aggregate
   result_table <- score_table %>%
-    dplyr::group_by(parties) %>%
-    dplyr::summarize(allocated=sum(allocated), .groups="drop")
+    group_by(.data$parties) %>%
+    summarize(allocated=sum(.data$allocated), .groups="drop")
 
   # Construct and return result.
   # As promised, if votes has names, results will have them too

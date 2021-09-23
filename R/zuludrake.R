@@ -5,7 +5,8 @@
 #' This function returns the size of a given drake target.
 #'
 #' @param target Name of the target
-#' @return       Size of the target
+#'
+#' @return Size of the target
 #'
 #' @export
 #'
@@ -27,13 +28,15 @@ get_drake_target_size <- function(target) {
 #' in a given drake plan
 #'
 #' @param my_plan Name of the plan from which to get target names
-#' @return        Tibble containing names and sizes of the targets
 #'
+#' @return Tibble containing names and sizes of the targets
+#'
+#' @md
+#' @importFrom rlang .data
 #' @export
-#'
 get_drake_target_sizes <- function(my_plan) {
     result <- tibble::tibble( target = my_plan$target,
                              size = sapply(my_plan$target, get_drake_target_size))
-    result <- dplyr::arrange(result,-size)
+    result <- dplyr::arrange(result,-.data$size)
     return(result)
 }

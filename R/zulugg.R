@@ -64,7 +64,7 @@ gg_apply <- function(p, fun, ..., .labs=TRUE, .vars=TRUE) {
   if ( isTRUE(.labs) ) {
     .labs <- names(p$labels)
   }
-  if ( isFALSE(.labs) || is.null(.labs) || is.na(.labs) ) {
+  if ( isFALSE(.labs) || is.null(.labs) || all(is.na(.labs)) ) {
     .labs <- character()
   }
   stopifnot(is.character(.labs))
@@ -80,7 +80,7 @@ gg_apply <- function(p, fun, ..., .labs=TRUE, .vars=TRUE) {
   if ( isTRUE(.vars) ) {
     .vars <- names(p$data)
   }
-  if ( isFALSE(.vars) || is.null(.vars) || is.na(.vars) ) {
+  if ( isFALSE(.vars) || is.null(.vars) || all(is.na(.vars)) ) {
     .vars <- character()
   }
   stopifnot(is.character(.vars))
