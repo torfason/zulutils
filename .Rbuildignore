@@ -1,2 +1,13 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^LICENSE\.md$
+^README\.Rmd$
+^_pkgdown\.yml$
+^cran-comments\.md$
+^doc$
+^docs$
+^Meta$
+^pkgdown$
+^build$
+^scratch$
+^CRAN-SUBMISSION$
