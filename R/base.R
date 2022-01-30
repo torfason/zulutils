@@ -13,10 +13,11 @@
 #' that it receives. This is that function.
 #'
 #' @param x The single argument to (not) process.
+#' @param ... Any other arguments are ignored
 #' @return The argument `x` is returned unchanged.
 #' @md
 #' @export
-noop = function(x)
+noop = function(x, ...)
 {
     x
 }
