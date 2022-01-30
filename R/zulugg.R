@@ -5,34 +5,34 @@
 
 #' Apply a function to each label and character/factor variable in the plot object.
 #'
-#' Applies the string function \code{fun} to each label present in
-#' the plot object \code{p}, as well as to any character or factor variables in
-#' the underlying data. The function, \code{fun}, should accept
-#' and return character vectors. It can either be a simple prettyfying
-#' function or it can perform more complex lookup to replace
-#' variable names with variable labels. If variables are factors, they are
-#' converted to character before applying the function after which they are
-#' reconverted to factor. Care is taken to preserve the factor ordering.
+#' Applies the string function `fun` to each label present in the plot
+#' object `p`, as well as to any character or factor variables in the
+#' underlying data. The function, `fun`, should accept and return character
+#' vectors. It can either be a simple prettifying function or it can perform
+#' more complex lookup to replace variable names with variable labels. If
+#' variables are factors, they are converted to character before applying the
+#' function after which they are reconverted to factor. Care is taken to
+#' preserve the factor ordering.
 #'
-#' @param p A \code{ggplot2} object
-#' @param fun A function to be applied to the labels in \code{p}
-#' @param ... Other variables to be passed to fun
+#' @param p A `ggplot2` object
+#' @param fun A function to be applied to the labels in `p`
+#' @param ... Other variables to be passed to `fun`
+#'
 #' @param .labs logical or character, indicating whether to apply the function
-#'   to the labels in p. If TRUE, apply to all character or factor
-#'   variables in p. If FALSE, NULL or empty vector, do not apply the function
-#'   to any variables. If a character vector containing the names of variables,
-#'   apply the function to those particular variables. An error may be thrown if
-#'   the vector refers to non-existing labels.
-#'   Defaults to \code{TRUE}
-#' @param .vars logical or character. If TRUE, apply to all character or factor
-#'   variables in p. If FALSE, NULL or empty vector, do not apply the function
+#'   to the labels in p. If TRUE, apply to all character or factor variables in
+#'   `p`. If `FALSE`, `NULL` or empty vector, do not apply the function to any
+#'   variables. If a character vector containing the names of variables, apply
+#'   the function to those particular variables. An error may be thrown if the
+#'   vector refers to non-existing labels. Defaults to `TRUE`.
+#'
+#' @param .vars logical or character. If `TRUE`, apply to all character or factor
+#'   variables in p. If `FALSE`, `NULL` or empty vector, do not apply the function
 #'   to any variables. If a character vector containing the names of variables,
 #'   apply the function to those particular variables. An error may be thrown if
 #'   the vector refers to non-existing variables or variables that are neither
-#'   characters nor factors.
-#'   Defaults to \code{TRUE} or \code{FALSE} ???
+#'   characters nor factors. Defaults to `TRUE`.
 #'
-#' @return A \code{ggplot2} object with changed labels
+#' @return A `ggplot2` object with changed labels
 #'
 #' @examples
 #' # This uses snakecase::to_sentence_case to prettify the labels
@@ -48,9 +48,9 @@
 #'     geom_point()
 #' p %>% gg_apply(snakecase::to_sentence_case)
 #'
-#' @family zulugg
+#' @family functions extending `ggplot`
+#' @md
 #' @export
-#'
 gg_apply <- function(p, fun, ..., .labs=TRUE, .vars=TRUE) {
 
   # Calculate new label values, and test that fun returns a sane result
@@ -118,16 +118,15 @@ gg_apply <- function(p, fun, ..., .labs=TRUE, .vars=TRUE) {
 
 #' Apply a string function to each label present in the plot object
 #'
-#' Applies the string function \code{fun} to each label present in
-#' the plot object \code{p}. The function, \code{fun}, should accept
-#' and return character vectors. It can either be a simple prettyfying
-#' function or it can perform more complex lookup to replace
-#' variable names with variable labels
+#' Applies the string function `fun to each label present in the plot object
+#' `p`. The function, `fun`, should accept and return character vectors. It can
+#' either be a simple prettifying function or it can perform more complex lookup
+#' to replace variable names with variable labels
 #'
-#' @param p A \code{ggplot2} object
-#' @param fun A function to be applied to the labels in \code{p}
+#' @param p A `ggplot2` object
+#' @param fun A function to be applied to the labels in `p`
 #'
-#' @return A \code{ggplot2} object with changed labels
+#' @return A `ggplot2` object with changed labels
 #'
 #' @examples
 #' # This uses snakecase::to_sentence_case to prettify the labels
@@ -143,9 +142,9 @@ gg_apply <- function(p, fun, ..., .labs=TRUE, .vars=TRUE) {
 #'     geom_point()
 #' p %>% gg_apply_labs(snakecase::to_sentence_case)
 #'
-#' @family zulugg
+#' @family functions extending `ggplot`
+#' @md
 #' @export
-#'
 gg_apply_labs <- function(p, fun) {
   .Deprecated("gg_apply")
   p$labels <- lapply(p$labels, fun)
@@ -164,7 +163,7 @@ gg_apply_labs <- function(p, fun) {
 #'   passed to the function, and also that the function currently does
 #'   not handle negative data and will error out if passed such data.
 #'
-#' @return A vector of breaks suitable for use with ggplot breaks parameter.
+#' @return A vector of breaks suitable for use with `ggplot` breaks parameter.
 #'
 #' @examples
 #' if ( require(ggplot2) ) {
@@ -174,7 +173,8 @@ gg_apply_labs <- function(p, fun) {
 #'     scale_y_continuous(breaks=gg_integer_breaks(mtcars$drat))
 #' }
 #'
-#' @family zulugg
+#' @family functions extending `ggplot`
+#' @md
 #' @export
 gg_integer_breaks <-function(x){
   stopifnot(x>0)
