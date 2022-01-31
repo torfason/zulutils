@@ -4,11 +4,11 @@ Title: Miscellaneous utility functions that the author found useful
 Version: 0.5.0
 Author: Magnus Thor Torfason
 Maintainer: Magnus Thor Torfason <m@zulutime.net>
-Description: 
-    This package contains various miscellaneous utility functions 
-    that the author found useful at the time. You are free to use 
-    it, but YMMV (Your Mileage May Vary).
+Description: This package contains various miscellaneous utility 
+  functions  that the author found useful at the time. You are 
+  free to use  it, but YMMV (Your Mileage May Vary).
 License: cc-by-sa
+Language: en-US
 Encoding: UTF-8
 LazyData: true
 Imports:
@@ -27,5 +27,5 @@ Suggests:
     ggplot2
 Depends: 
     R (>= 4.1),
-    zmisc (>= 0.1.0),
-    zfit (>= 0.1.0)
+    zmisc (>= 0.2.0),
+    zfit (>= 0.3.0)
