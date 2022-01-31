@@ -7,7 +7,7 @@
 na_replace(x, replace)
 }
 \arguments{
-\item{x}{Vector possibly contining missing (\code{NA}) values.}
+\item{x}{Vector possibly containing missing (\code{NA}) values.}
 
 \item{replace}{Scalar replacement value.}
 }
@@ -15,10 +15,13 @@ na_replace(x, replace)
 Copy of x with any missing values replaced with replace.
 }
 \description{
-Replace missing values
+Replaces NA values found in a vector with a specified scalar value
+
+\verb{NOTE:} The \code{\link[dplyr:coalesce]{dplyr::coalesce()}} function now provides this functionality in a
+more general way, so this function may merit deprecation.
 }
 \seealso{
-Other na_functions: 
+Other functions for \code{NA} handling: 
 \code{\link{na_if_in}()}
 }
-\concept{na_functions}
+\concept{functions for \code{NA} handling}

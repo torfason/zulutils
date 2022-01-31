@@ -2,22 +2,25 @@
 % Please edit documentation in R/enframed_and_labelled.R
 \name{rename_enframed}
 \alias{rename_enframed}
-\title{Rename tibble columns according to values in another tibble.}
+\title{Rename \code{tibble} columns according to values in another \code{tibble}.}
 \usage{
 rename_enframed(d, d.enframed)
 }
 \arguments{
-\item{d}{The tibble whose columns we want to rename}
+\item{d}{The \code{tibble} whose columns we want to rename.}
 
-\item{d.enframed}{The (enframed) tibble with the old and new names}
+\item{d.enframed}{The \verb{enframed tibble} with the old and new names.}
 }
 \value{
-A tibble that is identical to \code{d} but with renamed columns
+A tibble that is identical to \code{d} but with renamed columns.
 }
 \description{
-Renames variables from d according to the columns
-name (rename from) and value (rename to) in d.enframed.
-The expectation is that d.framed has been created
-with \code{enframe()}, such as
-\code{d.framed = enframe(c(a="New A", b="New B"))}.
+This function renames variables from \code{d} according to the columns in
+\code{d.enframed}, which should be in \code{enframed} format (two columns named \code{name}
+and \code{value}, see \code{\link[tibble:enframe]{tibble::enframe()}} for details). It will rename \emph{from}
+according to \code{d.enframed$name}, and \emph{to} according to \code{d.enframed$value}
+
+\verb{NOTE:} This function may merit deprecation, because \code{\link[dplyr:rename]{dplyr::rename_with()}}, coupled
+with \code{\link[=lookup]{lookup()}}, deals quite well with this use-case (and is more general).\preformatted{d.enframed = tibble::enframe(c(a="New A", b="New B"))
+}
 }

@@ -4,10 +4,12 @@
 \alias{noop}
 \title{Return a single argument unchanged}
 \usage{
-noop(x)
+noop(x, ...)
 }
 \arguments{
 \item{x}{The single argument to (not) process.}
+
+\item{...}{Any other arguments are ignored}
 }
 \value{
 The argument \code{x} is returned unchanged.

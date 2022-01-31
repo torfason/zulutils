@@ -15,11 +15,9 @@ gg_apply_labs(p, fun)
 A \code{ggplot2} object with changed labels
 }
 \description{
-Applies the string function \code{fun} to each label present in
-the plot object \code{p}. The function, \code{fun}, should accept
-and return character vectors. It can either be a simple prettyfying
-function or it can perform more complex lookup to replace
-variable names with variable labels
+Applies the string function \verb{fun to each label present in the plot object }p\verb{. The function, }fun`, should accept and return character vectors. It can
+either be a simple prettifying function or it can perform more complex lookup
+to replace variable names with variable labels
 }
 \examples{
 # This uses snakecase::to_sentence_case to prettify the labels
@@ -37,8 +35,8 @@ p \%>\% gg_apply_labs(snakecase::to_sentence_case)
 
 }
 \seealso{
-Other zulugg: 
+Other functions extending \code{ggplot}: 
 \code{\link{gg_apply}()},
 \code{\link{gg_integer_breaks}()}
 }
-\concept{zulugg}
+\concept{functions extending \code{ggplot}}

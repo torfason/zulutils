@@ -13,7 +13,7 @@ passed to the function, and also that the function currently does
 not handle negative data and will error out if passed such data.}
 }
 \value{
-A vector of breaks suitable for use with ggplot breaks parameter.
+A vector of breaks suitable for use with \code{ggplot} breaks parameter.
 }
 \description{
 Calculates a vector of breaks that contains all integers between
@@ -30,8 +30,8 @@ if ( require(ggplot2) ) {
 
 }
 \seealso{
-Other zulugg: 
+Other functions extending \code{ggplot}: 
 \code{\link{gg_apply_labs}()},
 \code{\link{gg_apply}()}
 }
-\concept{zulugg}
+\concept{functions extending \code{ggplot}}

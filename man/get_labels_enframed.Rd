@@ -2,25 +2,29 @@
 % Please edit documentation in R/enframed_and_labelled.R
 \name{get_labels_enframed}
 \alias{get_labels_enframed}
-\title{Get all the variable labels of a labelled tibble in an enframed tibble}
+\title{Get the variable labels of a \verb{labelled tibble} in an \verb{enframed tibble}}
 \usage{
 get_labels_enframed(d)
 }
 \arguments{
-\item{d}{The tibble whose columns have variable labels}
+\item{d}{The \code{tibble} whose columns have variable labels.}
 }
 \value{
-A tibble in enframed format containing variable names and labels
+A \code{tibble} in \code{enframed} format containing variable names and labels.
 }
 \description{
-Given a data tibble/data.frame, this function will return a tibble in
-enframed format (two columns named name and value), where the name
-column contains the names of the variables in the original tibble and
-the value column contains the labels. This can be used to review the
-labels, and (if coupled with a set_labels_enframed function) could be
-used to preserve labels across label-destructive operations, or export
-labels to a file (or a sheet in an excel file). Finally, it could be
-used with rename_enframed() in a pipe to replace the names of variables
-with their labels for display in a plot or table function that does not
-support the display of labels in a simple way.
+Given a data \code{tibble}/\code{data.frame}, this function will return a \code{tibble} in
+\code{enframed} format (two columns named name and value, see \code{\link[tibble:enframe]{tibble::enframe()}}
+for details), where the name column contains the names of the variables in
+the original \code{tibble} and the value column contains the labels.
+
+This can be used to review the labels, and could (if coupled with a
+\code{set_labels_enframed()} function, which is not currently implemented) be used
+to preserve labels across label-destructive operations, or export labels to a
+file (or a sheet in an excel file).
+
+Finally, it could be used in conjunction with \code{\link[zmisc:lookup]{zmisc::lookup()}} and
+\code{\link[dplyr:rename]{dplyr::rename_with()}} in a pipe to rename variables in order to replace the
+names of variables with their labels for display in a plot or table function
+that does not support the display of labels in a simple way.
 }

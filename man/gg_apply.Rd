@@ -11,36 +11,34 @@ gg_apply(p, fun, ..., .labs = TRUE, .vars = TRUE)
 
 \item{fun}{A function to be applied to the labels in \code{p}}
 
-\item{...}{Other variables to be passed to fun}
+\item{...}{Other variables to be passed to \code{fun}}
 
 \item{.labs}{logical or character, indicating whether to apply the function
-to the labels in p. If TRUE, apply to all character or factor
-variables in p. If FALSE, NULL or empty vector, do not apply the function
-to any variables. If a character vector containing the names of variables,
-apply the function to those particular variables. An error may be thrown if
-the vector refers to non-existing labels.
-Defaults to \code{TRUE}}
+to the labels in p. If TRUE, apply to all character or factor variables in
+\code{p}. If \code{FALSE}, \code{NULL} or empty vector, do not apply the function to any
+variables. If a character vector containing the names of variables, apply
+the function to those particular variables. An error may be thrown if the
+vector refers to non-existing labels. Defaults to \code{TRUE}.}
 
-\item{.vars}{logical or character. If TRUE, apply to all character or factor
-variables in p. If FALSE, NULL or empty vector, do not apply the function
+\item{.vars}{logical or character. If \code{TRUE}, apply to all character or factor
+variables in p. If \code{FALSE}, \code{NULL} or empty vector, do not apply the function
 to any variables. If a character vector containing the names of variables,
 apply the function to those particular variables. An error may be thrown if
 the vector refers to non-existing variables or variables that are neither
-characters nor factors.
-Defaults to \code{TRUE} or \code{FALSE} ???}
+characters nor factors. Defaults to \code{TRUE}.}
 }
 \value{
 A \code{ggplot2} object with changed labels
 }
 \description{
-Applies the string function \code{fun} to each label present in
-the plot object \code{p}, as well as to any character or factor variables in
-the underlying data. The function, \code{fun}, should accept
-and return character vectors. It can either be a simple prettyfying
-function or it can perform more complex lookup to replace
-variable names with variable labels. If variables are factors, they are
-converted to character before applying the function after which they are
-reconverted to factor. Care is taken to preserve the factor ordering.
+Applies the string function \code{fun} to each label present in the plot
+object \code{p}, as well as to any character or factor variables in the
+underlying data. The function, \code{fun}, should accept and return character
+vectors. It can either be a simple prettifying function or it can perform
+more complex lookup to replace variable names with variable labels. If
+variables are factors, they are converted to character before applying the
+function after which they are reconverted to factor. Care is taken to
+preserve the factor ordering.
 }
 \examples{
 # This uses snakecase::to_sentence_case to prettify the labels
@@ -58,8 +56,8 @@ p \%>\% gg_apply(snakecase::to_sentence_case)
 
 }
 \seealso{
-Other zulugg: 
+Other functions extending \code{ggplot}: 
 \code{\link{gg_apply_labs}()},
 \code{\link{gg_integer_breaks}()}
 }
-\concept{zulugg}
+\concept{functions extending \code{ggplot}}

@@ -16,9 +16,8 @@ A vector with boolean values indicating in which elements
 of \code{string} matched the corresponding elements in \code{pattern}.
 }
 \description{
-This function looks for pattern in each of the elements
-of string, returning TRUE for each element that contains
-pattern, and FALSE for the other elements. The argument
-order follows the conventions of the stringr package,
-and the underlying matching is done using \code{\link[stringr:str_extract]{stringr::str_extract()}}
+This function looks for pattern in each of the elements of string, returning
+TRUE for each element that contains pattern, and FALSE for the other
+elements. The argument order follows the conventions of the \code{stringr}
+package, and the underlying matching is done using \code{\link[stringr:str_extract]{stringr::str_extract()}}.
 }

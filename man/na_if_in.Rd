@@ -15,16 +15,16 @@ na_if_in(x, y)
 A modified version of \code{x} that replaces any values that are found in \code{y} with \code{NA}.
 }
 \description{
-This function is a variant/extension of \code{\link[dplyr:na_if]{dplyr::na_if()}}.
-Whereas that version requires \code{y} to be of length one,
-this function allows \code{y} to be a vector and replaces any
-elements of \code{x} that are found in \code{y} with \code{NA} values.
+This function is a variant/extension of \code{\link[dplyr:na_if]{dplyr::na_if()}}. Whereas that
+version requires \code{y} to be of length one, this function allows \code{y} to be a
+vector and replaces any elements of \code{x} that are found in \code{y} with \code{NA}
+values.
 
 This function can be very useful when cleaning data and
-setting multiple any annoying values to NA.
+setting multiple any annoying values to \code{NA}.
 }
 \seealso{
-Other na_functions: 
+Other functions for \code{NA} handling: 
 \code{\link{na_replace}()}
 }
-\concept{na_functions}
+\concept{functions for \code{NA} handling}
