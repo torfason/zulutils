@@ -12,8 +12,8 @@
 devtools::document()
 devtools::build_readme()
 devtools::build_vignettes()
-devtools::build_site()
 devtools::build_manual()
+devtools::build_site()
 
 ## Do the final checking steps
 devtools::spell_check()
