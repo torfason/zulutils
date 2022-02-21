@@ -10,4 +10,12 @@ This package contains various miscellaneous utility
 functions  that the author found useful at the time. You are
 free to use  it, but YMMV (Your Mileage May Vary).
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://torfason.github.io/zulutils}
+  \item \url{https://github.com/torfason/zulutils}
+}
+
+}
 \keyword{internal}

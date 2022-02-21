@@ -1,7 +1,7 @@
 Package: zulutils
 Type: Package
 Title: Miscellaneous utility functions that the author found useful
-Version: 0.5.0
+Version: 0.5.1
 Author: Magnus Thor Torfason
 Maintainer: Magnus Thor Torfason <m@zulutime.net>
 Description: This package contains various miscellaneous utility 
@@ -11,6 +11,8 @@ License: cc-by-sa
 Language: en-US
 Encoding: UTF-8
 LazyData: true
+URL: https://torfason.github.io/zulutils,
+  https://github.com/torfason/zulutils
 Imports:
     stringr (>= 1.2.0),
     rlang, 
@@ -18,8 +20,7 @@ Imports:
     dplyr,
     tibble,
     magrittr,
-    drake,
-    zfit
+    drake
 RoxygenNote: 7.1.2
 Suggests: 
     testthat (>= 2.1.0),

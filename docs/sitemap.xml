@@ -13,6 +13,9 @@
     <loc>/reference/bgrep.html</loc>
   </url>
   <url>
+    <loc>/reference/catty.html</loc>
+  </url>
+  <url>
     <loc>/reference/dhondt.html</loc>
   </url>
   <url>
@@ -64,10 +67,16 @@
     <loc>/reference/pipe.html</loc>
   </url>
   <url>
+    <loc>/reference/print.zmisc_catty.html</loc>
+  </url>
+  <url>
     <loc>/reference/rename_enframed.html</loc>
   </url>
   <url>
     <loc>/reference/tibble.html</loc>
+  </url>
+  <url>
+    <loc>/reference/validate.zmisc_catty.html</loc>
   </url>
   <url>
     <loc>/reference/zulu_letters.html</loc>
