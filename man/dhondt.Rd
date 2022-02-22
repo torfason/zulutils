@@ -7,7 +7,7 @@
 \usage{
 dhondt(votes, seats = 7, ties = c("error", "first"))
 
-largest_remainder(votes, seats = 7, ties = c("undefined", "error", "first"))
+largest_remainder(votes, seats = 7, ties = c("error", "first"))
 }
 \arguments{
 \item{votes}{A vector with the votes of different parties. The number of
