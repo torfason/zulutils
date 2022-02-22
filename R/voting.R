@@ -1,3 +1,4 @@
+
 #' Allocate discrete seats given continuous votes
 #'
 #' @description
@@ -55,6 +56,7 @@ dhondt <- function(votes, seats=7, ties=c("error","first")) {
   # Defend against bad input
   stopifnot(is.numeric(votes) && length(votes)>=1 && all(votes>=0))
   stopifnot(is.numeric(seats) && length(seats)==1 && seats>=0 && seats==round(seats))
+  stopifnot(sum(votes)>0)
   ties <- match.arg(ties)
 
   # Let's just handle zero seats separately
@@ -63,7 +65,6 @@ dhondt <- function(votes, seats=7, ties=c("error","first")) {
     names(result) <- names(votes)
     return(result)
   }
-
 
   # Prepare a tibble with the results
   parties <- seq_along(votes)
@@ -74,29 +75,10 @@ dhondt <- function(votes, seats=7, ties=c("error","first")) {
     arrange(desc(.data$scores)) %>% # We assume arrange is stable so first party wins
     mutate(allocated=c(rep(1L,seats), rep(0L,(seats*length(votes)-seats))))
 
-  # Handle ties
+  # Handle ties using tie checking function
   score_last_in   <- score_table$scores[seats]
   score_first_out <- score_table$scores[seats+1]
-  if (isTRUE(all.equal(score_last_in,score_first_out))) {
-    # If errors on ties are specified, we bail out, otherwise
-    # we proceed to check for dirty ties.
-    if (ties == "error") {
-      stop(paste0( "A tie occured in dhondt() allocation.\n",
-                   "  To let the function resolve ties, set ties='first'\n",
-                   "  (but be sure that this is what you want."))
-    }
-
-    if (score_last_in != score_first_out) {
-      # We have a dirty tie, very close scores but not absolutely equal, so
-      # we cannot trust sorting to be stable on the ties.
-      warning(paste0( "A very-near-tie occured in dhondt() allocation.\n",
-                      "  The most likely cause is a rounding error, which means that the\n",
-                      "  ordering used to resolve ties cannot be trusted. You may want to\n",
-                      "  double-check your results. Also, if you are able to share the data\n",
-                      "  that caused this warning with the creator of this package, it would\n",
-                      "  be greatly appreciated." ))
-    }
-  }
+  check_ties(score_last_in, score_first_out, ties=ties)
 
   # Aggregate
   result_table <- score_table %>%
@@ -109,7 +91,6 @@ dhondt <- function(votes, seats=7, ties=c("error","first")) {
   names(result) <- names(votes)
   result
 }
-
 
 
 #' Vote allocation using largest remainder method
@@ -133,11 +114,12 @@ dhondt <- function(votes, seats=7, ties=c("error","first")) {
 #' @family functions related to voting
 #' @md
 #' @export
-largest_remainder <- function(votes, seats=7, ties=c("undefined", "error","first")) {
+largest_remainder <- function(votes, seats=7, ties=c("error","first")) {
 
   # Defend against bad input
   stopifnot(is.numeric(votes) && length(votes)>=1 && all(votes>=0))
   stopifnot(is.numeric(seats) && length(seats)==1 && seats>=0 && seats==round(seats))
+  stopifnot(sum(votes)>0)
   ties <- match.arg(ties)
 
   # Let's just handle zero seats separately
@@ -147,19 +129,75 @@ largest_remainder <- function(votes, seats=7, ties=c("undefined", "error","first
     return(result)
   }
 
-
+  # Allocate the integer (base) seats
   result_float <- seats*votes/sum(votes)
   result_base  <- floor(result_float)
   result_remainders <- result_float-result_base
-
   remaining_seats <- seats-sum(result_base)
 
+  # Allocates the remainder seats based on largest remainder
   # https://stackoverflow.com/questions/17619782/how-to-find-the-largest-n-elements-in-a-list-in-r/17619825
-  which_get_extra <- order(result_remainders, decreasing=TRUE)[1:remaining_seats]
+  remainder_order <- order(result_remainders, decreasing=TRUE)
+  which_get_extra <- remainder_order[zmisc::zeq(1,remaining_seats)]
   result <- result_base
   result[which_get_extra] = result[which_get_extra]+1
+
+  # Handle ties using tie checking function (silly indexing complexity due to how order() works)
+  score_last_in   <- result_remainders[remainder_order[remaining_seats]]
+  score_first_out <- result_remainders[remainder_order[remaining_seats+1]]
+  check_ties(score_last_in, score_first_out, ties=ties)
+
+  # Defend against bad output
+  stopifnot(sum(result)==seats)
 
   # Return the result
   result
 
+}
+
+
+#' Check voting ties for errors
+#'
+#' Compares the voting scores of the last seat in and first seat out, for use
+#' with seat calculation functions. The check assumes that the calling function
+#' correctly assignes tied seats to the first listed party, and depending on the
+#' value of the `ties` parameter, it can either error (clean or dirty ties if
+#' `ties=="error"`), or warn (dirty ties if `ties=="first"`).
+#'
+#' @param score_last_in The score of the last seat allocated
+#' @param score_first_out The score of the first seat not allocated
+#' @param ties Should ties cause an "`error`" or should the "`first`" be chosen
+#'
+#' @md
+#' @keywords internal
+check_ties <- function(score_last_in, score_first_out, ties) {
+
+  # Ties must be error or first
+  stopifnot(ties %in% c("error","first"))
+
+  # Handle ties
+  if (isTRUE(all.equal(score_last_in,score_first_out))) {
+    # If errors on ties are specified, we bail out, otherwise
+    # we proceed to check for dirty ties.
+    if (ties == "error") {
+      stop(paste0( "A tie occured in the seat allocation algorithm.\n",
+                   "  To let the function resolve ties, set ties='first'\n",
+                   "  (but be sure that this is what you want."))
+    }
+
+    if (score_last_in != score_first_out) {
+      # We have a dirty tie, very close scores but not absolutely equal, so
+      # we cannot trust sorting to be stable on the ties.
+      warning(paste0( "A very-near-tie occured in the seat allocation algorithm.\n",
+                      "  The most likely cause is a rounding error, which means that the\n",
+                      "  ordering used to resolve ties cannot be trusted. You may want to\n",
+                      "  double-check your results. Also, if you are able to share the data\n",
+                      "  that caused this warning with the creator of this package, it would\n",
+                      "  be greatly appreciated." ))
+    }
+
+  }
+
+  # Return an invisible NULL
+  invisible(NULL)
 }
