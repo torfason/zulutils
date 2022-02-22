@@ -103,9 +103,6 @@ dhondt <- function(votes, seats=7, ties=c("error","first")) {
 #' The rationale for implementation of this function is comparable to that for
 #' `dhondt()`.
 #'
-#' `NOTE:` Tie handling has currently not been fully implemented for
-#' `largest_remainder()`.
-#'
 #' @examples
 #' largest_remainder(c(13,11,7,5,3))
 #' largest_remainder(c(liberals=4876, conservatives=5212, greens=2349), seats=21)

@@ -56,9 +56,6 @@ greatest divisors method. An alternative implementation exists in
 \code{\link[electoral:seats_largest_remainders]{electoral::seats_lr()}}, and possibly in \code{\link[coalitions:hare_niemeyer]{coalitions::hare_niemeyer()}}.
 The rationale for implementation of this function is comparable to that for
 \code{dhondt()}.
-
-\verb{NOTE:} Tie handling has currently not been fully implemented for
-\code{largest_remainder()}.
 }
 \examples{
 dhondt(c(13,11,7,5,3))
