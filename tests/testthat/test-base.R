@@ -109,14 +109,16 @@ test_that("zingle works", {
 })
 
 #### Test na_replace() ####
-test_that("na_replace works", {
-  na_replace(c(1, 2, NA, 4, 5, NA), 3) %>%
+test_that("na_replace is deprecated", {
+  na_replace(c(1, 2, NA, 4, 5, NA), 3) |>
+    expect_warning() |>
     expect_equal(c(1:5, 3))
 })
 
 #### Test na.replace() ####
 test_that("na.replace is deprecated", {
-  expect_warning(na.replace(c(1, 2, NA, 4, 5, NA), 3)) %>%
+  na.replace(c(1, 2, NA, 4, 5, NA), 3) |>
+    expect_warning() |>
     expect_equal(c(1:5,3))
 })
 
@@ -144,59 +146,3 @@ test_that("bgrep works", {
     expect_equal( bgrep(c("apple","orange","pear"),"r"), c(FALSE,TRUE,TRUE)     )
 })
 
-
-#### Test dhont() ####
-test_that("dhondt works", {
-
-  # Test vectors (initially created using electoral package)
-  votes_2 <-  c(100, 150, 60, 80, 160)
-  seats_2_named <- c(V = 3L, W = 4L, X = 1L, Y = 2L, Z = 5L)
-  votes_2_named <-  c(100, 150, 60, 80, 160)
-  names(votes_2_named) <- names(seats_2_named)
-
-  votes_3_named <- c(DEM=490205, PMDB=1151547, PRB=2449440,
-                                        PSB=48274, PSTU=54403, PTC=173151)
-  seats_3_named <- c(DEM = 2L, PMDB = 5L, PRB = 12L, PSB = 0L, PSTU = 0L, PTC = 0L)
-
-  set.seed(42)
-  votes_4 <- sample(10000, 5)
-  seats_4 <- c(0, 1, 3, 0, 3)
-
-  # Test basic case with and without names
-  expect_equal(dhondt(votes_2, sum(seats_2_named)), unname(seats_2_named))
-  expect_equal(dhondt(votes_2_named, sum(seats_2_named)), seats_2_named)
-
-  # A couple of other values
-  expect_equal(dhondt(votes_3_named, sum(seats_3_named)), seats_3_named)
-  expect_equal(dhondt(votes_4), seats_4) # Rely on the default 7
-
-  # Test tie handling
-  votes_tie_1    <- c(100, 150, 60)
-  seats_tie_1_4s <- c(   1,  2,  1) # First four seats, tie between 5 and 6
-  seats_tie_1_6s <- c(   2,  3,  1) # First six seats, tie between 5 and 6
-  expect_equal(dhondt(votes_tie_1, 4), seats_tie_1_4s)
-  expect_equal(dhondt(votes_tie_1, 6), seats_tie_1_6s)
-
-  # Error on four - unless we specify first
-  expect_error(dhondt(votes_tie_1, 5), regexp="A tie occured in dhondt.. allocation.*")
-  seats_tie_1_5s_first <- c(   2,  2,  1) # First six seats, tie between 5 and 6
-  expect_equal(dhondt(votes_tie_1, 5, ties="first"), seats_tie_1_5s_first)
-
-  # Make sure bad input results in error
-  expect_error(dhondt(-1))
-  expect_error(dhondt(-1:5))
-  expect_error(dhondt(1:5, -1))
-  expect_error(dhondt(1:5, 0.5))
-  expect_error(dhondt(1:5, 1.2))
-  expect_error(dhondt(integer(0), 1))
-
-  # If all votes are zero, they are all equal, so we error unless ties are allowed
-  expect_error(dhondt(c(0,0,0)))
-  expect_equal(dhondt(c(0,0,0), ties="first"), c(7,0,0))
-
-  # The function needs to handle the allocation of zero votes or zero seats
-  # (zero parties are not allowed)
-  expect_equal(dhondt(c(1,0,0)), c(7,0,0))
-  expect_equal(dhondt(c(1,0,0), seats=0), c(0,0,0))
-
-})
