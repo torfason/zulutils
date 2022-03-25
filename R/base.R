@@ -129,3 +129,25 @@ bgrep = function(string, pattern)
   return(!is.na(v.match))
 }
 
+
+
+#' Sample a set of strings, each string of a given length
+#'
+#' @param nchar The length of each string.
+#' @param size The number of strings.
+#' @param upper Should the strings be upper case?
+#' @return A random vector of `size` strings of length `nchar`.
+#'
+#' @examples
+#' sample_strings()
+#' d <- data.frame(key = sample_strings(7,9), value=1:9)
+#' d[order(d$key),]
+#'
+#' @md
+#' @export
+sample_strings <- function(nchar=3, size=1, upper=FALSE) {
+  ltr <- if (upper) {LETTERS} else {letters}
+  sample(ltr, nchar*size, replace=TRUE) |>
+    matrix(nrow = nchar, ncol = size) |>
+    apply(MARGIN=2, paste, collapse="")
+}
