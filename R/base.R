@@ -139,6 +139,7 @@ bgrep = function(string, pattern)
 #' @return A random vector of `size` strings of length `nchar`.
 #'
 #' @examples
+#' set.seed(42)
 #' sample_strings()
 #' d <- data.frame(key = sample_strings(7,9), value=1:9)
 #' d[order(d$key),]

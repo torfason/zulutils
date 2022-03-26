@@ -20,6 +20,7 @@ A random vector of \code{size} strings of length \code{nchar}.
 Sample a set of strings, each string of a given length
 }
 \examples{
+set.seed(42)
 sample_strings()
 d <- data.frame(key = sample_strings(7,9), value=1:9)
 d[order(d$key),]
