@@ -58,6 +58,8 @@ print.zmisc_catty <- function(x, ...) {
 #'
 #' @param x The object to validate
 #'
+#' @keywords internal
+#' @md
 #' @return The object
 validate.zmisc_catty <- function(x) {
   stopifnot(inherits(x, "zmisc_catty"))
