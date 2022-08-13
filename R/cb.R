@@ -18,12 +18,12 @@ utils::globalVariables("spec_string")
 #' factor levels and group them together, so editing the `col_spec` to reorder
 #' factor levels or make other changes is straightforward.
 #'
-#' The result is retured as a `catty` vector to provide a more readable output
+#' The result is returned as a `catty` vector to provide a more readable output
 #' by default.
 #'
 #' The output can then be edited before the `col_spec` is used to read the data
 #' in fresh from the CSV file. Assuming the `cols()` result is assigned to a
-#' variable `cspec`, one might have the followinlg:
+#' variable `cspec`, one might have the following:
 #'
 #' ```
 #' d <- read_csv(csv_file)

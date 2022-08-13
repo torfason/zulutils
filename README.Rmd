@@ -28,6 +28,7 @@ blocks <- force(blocks)
 ```
 
 <!-- badges: start -->
+[![check-standard](https://github.com/torfason/zulutils/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/torfason/zulutils/actions/workflows/check-standard.yaml)
 <!-- badges: end -->
 
 ## `r desc::desc_get("Title")`

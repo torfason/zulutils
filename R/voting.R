@@ -157,7 +157,7 @@ largest_remainder <- function(votes, seats=7, ties=c("error","first")) {
 #'
 #' Compares the voting scores of the last seat in and first seat out, for use
 #' with seat calculation functions. The check assumes that the calling function
-#' correctly assignes tied seats to the first listed party, and depending on the
+#' correctly assigns tied seats to the first listed party, and depending on the
 #' value of the `ties` parameter, it can either error (clean or dirty ties if
 #' `ties=="error"`), or warn (dirty ties if `ties=="first"`).
 #'

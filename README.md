@@ -3,6 +3,8 @@ zulutils
 
 <!-- README.md is generated from README.Rmd -->
 <!-- badges: start -->
+
+[![check-standard](https://github.com/torfason/zulutils/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/torfason/zulutils/actions/workflows/check-standard.yaml)
 <!-- badges: end -->
 
 ## Miscellaneous utility functions that the author found useful

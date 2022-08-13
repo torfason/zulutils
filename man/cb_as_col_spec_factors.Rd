@@ -23,12 +23,12 @@ The key benefit is that it will find all variables that are using the same
 factor levels and group them together, so editing the \code{col_spec} to reorder
 factor levels or make other changes is straightforward.
 
-The result is retured as a \code{catty} vector to provide a more readable output
+The result is returned as a \code{catty} vector to provide a more readable output
 by default.
 
 The output can then be edited before the \code{col_spec} is used to read the data
 in fresh from the CSV file. Assuming the \code{cols()} result is assigned to a
-variable \code{cspec}, one might have the followinlg:
+variable \code{cspec}, one might have the following:
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{d <- read_csv(csv_file)
 cb_as_col_spec_factors(d)

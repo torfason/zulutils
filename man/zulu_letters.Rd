@@ -15,10 +15,9 @@ A \code{tibble} (data frame) with 26 rows and 2 variables:
 zulu_letters
 }
 \description{
-A dataset containing the letters of the alphabet and their
-representaion in the phonetic alphabet (alpha, bravo, charlie,
-..., zulu). The data is formatted as an \verb{enframed tibble}
-(see \code{\link[tibble:enframe]{tibble::enframe()}}), suitable for use in contexts such
-as the \code{\link[=lookup]{lookup()}} function.
+A dataset containing the letters of the alphabet and their representation in
+the phonetic alphabet (alpha, bravo, charlie, ..., zulu). The data is
+formatted as an \verb{enframed tibble} (see \code{\link[tibble:enframe]{tibble::enframe()}}), suitable for use
+in contexts such as the \code{\link[=lookup]{lookup()}} function.
 }
 \keyword{datasets}

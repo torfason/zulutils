@@ -1,8 +1,8 @@
-pandoc: 2.17.1.1
-pkgdown: 2.0.2
+pandoc: '2.18'
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-03-26T14:10Z
+last_built: 2022-08-13T16:37Z
 urls:
   reference: https://torfason.github.io/zulutils/reference
   article: https://torfason.github.io/zulutils/articles
