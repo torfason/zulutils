@@ -45,7 +45,9 @@ preserve the factor ordering.
 # Note: The plot is assigned to a named variable before piping to gg_apply_labs()
 #       This is to avoid issues due to the precedence of operators,
 #       (\%>\% has higher precedence than +)
-library(tidyverse)
+library(dplyr, warn.conflicts=FALSE)
+library(ggplot2)
+library(forcats)
 library(snakecase)
 p <- starwars \%>\%
     filter(mass < 1000) \%>\%

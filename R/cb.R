@@ -38,6 +38,7 @@ utils::globalVariables("spec_string")
 #'   defining a `col_spec`, after any needed editing to reorder factors.
 #'
 #' @importFrom dplyr select
+#' @importFrom zmisc zeq
 #'
 #' @md
 #' @export

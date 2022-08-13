@@ -13,6 +13,9 @@
 #' @description
 #' `r desc::desc_get("Description")`
 #'
+#' @import zmisc
+#' @import zfit
+#'
 #' @docType package
 #' @name zulutils
 #' @md

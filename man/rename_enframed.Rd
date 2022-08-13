@@ -21,6 +21,8 @@ and \code{value}, see \code{\link[tibble:enframe]{tibble::enframe()}} for detail
 according to \code{d.enframed$name}, and \emph{to} according to \code{d.enframed$value}
 
 \verb{NOTE:} This function may merit deprecation, because \code{\link[dplyr:rename]{dplyr::rename_with()}}, coupled
-with \code{\link[=lookup]{lookup()}}, deals quite well with this use-case (and is more general).\preformatted{d.enframed = tibble::enframe(c(a="New A", b="New B"))
-}
+with \code{\link[=lookup]{lookup()}}, deals quite well with this use-case (and is more general).
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{d.enframed = tibble::enframe(c(a="New A", b="New B"))
+}\if{html}{\out{</div>}}
 }

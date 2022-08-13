@@ -39,7 +39,7 @@ notate <- function(d) {
 
   # Converts labelled, using as_factor to prepend level
   notate.labelled <- function(x) {
-    stopifnot(is.labelled(x))
+    stopifnot(labelled::is.labelled(x))
     r <- x |>
       haven::as_factor(levels="both") |>
       as.character()
@@ -70,7 +70,7 @@ notate <- function(d) {
 #' @rdname notate
 #' @export
 ViewNotated <- function(d) {
-  View(notate(d))
+  utils::View(notate(d))
 }
 
 #' @rdname notate

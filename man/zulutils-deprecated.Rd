@@ -24,7 +24,7 @@ The functions listed below are deprecated and will be defunct
 
 \section{\code{lookup_enframed}}{
 
-\code{lookup_enframed()} is deprecated in favor of \code{\link{lookup()}}.
+\code{lookup_enframed()} is deprecated in favor of \code{\link[zmisc:lookup]{zmisc::lookup()}}.
 }
 
 \keyword{internal}

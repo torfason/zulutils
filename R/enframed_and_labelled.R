@@ -4,16 +4,15 @@
 ##
 
 
-
-
 #' @rdname zulutils-deprecated
-#' @section \code{lookup_enframed}:
-#' \code{lookup_enframed()} is deprecated in favor of \code{\link{lookup()}}.
+#' @section `lookup_enframed`:
+#' `lookup_enframed()` is deprecated in favor of [zmisc::lookup()].
 #'
+#' @md
 #' @export
 lookup_enframed <- function(x, lookup_table) {
-  .Deprecated("lookup", msg="lookup_enframed() is deprecated in favor of lookup().")
-  lookup(x, lookup_table)
+  .Deprecated("zmisc::lookup", msg="lookup_enframed() is deprecated in favor of zmisc::lookup().")
+  zmisc::lookup(x, lookup_table)
 }
 
 
@@ -55,6 +54,7 @@ rename_enframed = function(d, d.enframed)
         dplyr::rename_at(dplyr::vars(d.enframed$name), ~d.enframed$value)
     return(result)
 }
+
 
 #' Get the variable labels of a `labelled tibble` in an `enframed tibble`
 #'

@@ -39,7 +39,9 @@
 #' # Note: The plot is assigned to a named variable before piping to gg_apply_labs()
 #' #       This is to avoid issues due to the precedence of operators,
 #' #       (%>% has higher precedence than +)
-#' library(tidyverse)
+#' library(dplyr, warn.conflicts=FALSE)
+#' library(ggplot2)
+#' library(forcats)
 #' library(snakecase)
 #' p <- starwars %>%
 #'     filter(mass < 1000) %>%
@@ -133,14 +135,18 @@ gg_apply <- function(p, fun, ..., .labs=TRUE, .vars=TRUE) {
 #' # Note: The plot is assigned to a named variable before piping to gg_apply_labs()
 #' #       This is to avoid issues due to the precedence of operators,
 #' #       (%>% has higher precedence than +)
-#' library(tidyverse)
+#' library(dplyr, warn.conflicts=FALSE)
+#' library(ggplot2)
+#' library(forcats)
 #' library(snakecase)
 #' p <- starwars %>%
 #'     filter(mass < 1000) %>%
 #'     mutate(species = species %>% fct_infreq %>%  fct_lump(5) %>% fct_explicit_na) %>%
 #'     ggplot(aes(height, mass, color=species, size=birth_year)) +
 #'     geom_point()
-#' p %>% gg_apply_labs(snakecase::to_sentence_case)
+#' suppressWarnings(
+#'   p %>% gg_apply_labs(snakecase::to_sentence_case)
+#' )
 #'
 #' @family functions extending `ggplot`
 #' @md

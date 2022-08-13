@@ -15,3 +15,4 @@ The object
 \description{
 Internal validation function for catty objects
 }
+\keyword{internal}

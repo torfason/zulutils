@@ -1,7 +1,8 @@
 #' Pipe operator
 #'
-#' See \code{magrittr::\link[magrittr:pipe]{\%>\%}} for details.
+#' See `%>%` in the `magrittr` package for details.
 #'
+#' @md
 #' @name %>%
 #' @rdname pipe
 #' @keywords internal
@@ -12,8 +13,9 @@ NULL
 
 #' Exposition pipe operator
 #'
-#' See \code{magrittr::\link[magrittr:exposition_pipe]{\%$\%}} for details.
+#' See `%$%` in the `magrittr` package for details.
 #'
+#' @md
 #' @name %$%
 #' @rdname exposition_pipe
 #' @keywords internal

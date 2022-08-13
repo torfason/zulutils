@@ -7,7 +7,7 @@ Maintainer: Magnus Thor Torfason <m@zulutime.net>
 Description: This package contains various miscellaneous utility 
   functions  that the author found useful at the time. You are 
   free to use  it, but YMMV (Your Mileage May Vary).
-License: cc-by-sa
+License: CC BY-SA 4.0
 Language: en-US
 Encoding: UTF-8
 LazyData: true
@@ -16,16 +16,21 @@ URL: https://torfason.github.io/zulutils,
 Imports:
     stringr (>= 1.2.0),
     rlang, 
-    tidyselect,
     dplyr,
     tibble,
     magrittr,
-    drake
-RoxygenNote: 7.1.2
+    drake,
+    readr, 
+    purrr,
+    haven,
+    labelled
+RoxygenNote: 7.2.1
 Suggests: 
     testthat (>= 2.1.0),
     snakecase,
-    ggplot2
+    ggplot2,
+    waldo,
+    forcats
 Depends: 
     R (>= 4.1),
     zmisc (>= 0.2.0),
