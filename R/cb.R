@@ -100,28 +100,37 @@ cb_as_col_spec_factors <- function(d) {
 #' Apply a col_spec to a data.frame
 #'
 #' @description
-#' `cb_apply_col_spec()` applies column definitions contained
-#' in a `col_spec` object (typically created using [readr::cols()]),
-#' to the chosen columns in a `data.frame`.
+#' `cb_apply_col_spec()` applies column definitions contained in a `col_spec`
+#' object (typically created using [readr::cols()]), to the chosen columns in a
+#' `data.frame`.
 #'
-#' NOTE: This is currently only implemented for column specifications
-#' specifying conversion to a factor variable.
+#' NOTE: This is currently only implemented for column specifications specifying
+#' conversion to a factor variable.
 #'
 #' @param d The `data.frame` to which the `col_spec` should be applied.
 #' @param cspec The `col_spec` to apply.
-#' @param warn_missing_levels Warn if any values in `d` don't match
-#'   the levels of the corresponding factor.
-#' @param set_spec_attribute Should the `spec` attribute of the result
-#'   be set to the `col_spec` (for compatibility with `readr` behavior).
-#' @return A `data.frame` based on `d`, with corresponding columns
-#'   changed according to the values specified in `cspec`
+#' @param warn_missing_levels Warn if any values in `d` don't match the levels
+#'   of the corresponding factor.
+#' @param set_spec_attribute Should the `spec` attribute of the result be set to
+#'   the `col_spec` (for compatibility with `readr` behavior).
+#' @param set_problems_attribute Should the `problems` attributes of the result
+#'   be set in case of problems with parsing.
+#' @return A `data.frame` based on `d`, with corresponding columns changed
+#'   according to the values specified in `cspec`
 #'
 #' @md
 #' @importFrom purrr imap
 #' @importFrom readr parse_factor
+#' @importFrom dplyr mutate_all
+#' @importFrom labelled copy_labels
 #' @export
 cb_apply_col_spec <- function(d, cspec,
-      warn_missing_levels=TRUE, set_spec_attribute=FALSE) {
+      warn_missing_levels = TRUE,
+      set_spec_attribute = FALSE,
+      set_problems_attribute = TRUE ) {
+
+  # Store the original for label copying
+  d.org <- d
 
   # A bit of input checking
   if (!all(inherits(d, "data.frame"), inherits(cspec, "col_spec"),
@@ -135,7 +144,8 @@ cb_apply_col_spec <- function(d, cspec,
   # Do the actual application of the col_spec
   if (warn_missing_levels) {
     # parse_factor() creates elaborate warnings on missing levels,
-    # but no option to turn it off
+    # but no option to turn it off. It also sets the "problems"
+    # attribute on the resulting data.frame
     d[names(cspec$cols)] <- imap(cspec$cols, ~ parse_factor(d[[.y]],
        levels = .x$levels, ordered = .x$ordered,
        include_na = .x$include_na))
@@ -150,5 +160,16 @@ cb_apply_col_spec <- function(d, cspec,
   if (set_spec_attribute) {
     attr(d, "spec") <- cspec
   }
+
+  # Unless specifically requested, any "problems" attributes should be cleared
+  # from the result
+  if (!set_problems_attribute) {
+    attr(d, "problems") <- NULL
+    d <- mutate_all(d, function(x){attr(x,"problems")<-NULL; x})
+  }
+
+  # Any labels from the original should be copied to the result
+  d <- copy_labels(from = d.org, to = d)
+
   d
 }

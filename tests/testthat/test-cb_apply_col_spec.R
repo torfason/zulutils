@@ -63,14 +63,43 @@ test_that("cb_apply_col_spec works", {
   sw_result <- cb_apply_col_spec(sw, cspec)
   expect_equal(sw_result, sw_fct)
 
-  # The path with warn_missing_levels==TRUE, but zapping the problems afterwards
+  # The result with warn_missing_levels==TRUE, but zapping the problems afterwards
   sw_result_na_warn <- expect_warning(cb_apply_col_spec(sw, cspec_na))
     attr(sw_result_na_warn,"problems")<-NULL
     attr(sw_result_na_warn$hair_color,"problems")<-NULL
   expect_equal(sw_result_na_warn, sw_fct_na)
 
-  # The path with
+  # The result with warn_missing_levels==TRUE, but zapping the problems afterwards
+  sw_result_na_warn <- expect_warning(cb_apply_col_spec(sw, cspec_na))
+    attr(sw_result_na_warn,"problems")<-NULL
+    attr(sw_result_na_warn$hair_color,"problems")<-NULL
+  expect_equal(sw_result_na_warn, sw_fct_na)
+
+  # The result with warn_missing_levels==FALSE
   expect_equal(cb_apply_col_spec(sw, cspec_na, warn_missing_levels=FALSE), sw_fct_na)
 
+  # The result with set_problems_attribute==FALSE
+  sw_result_na_warn_but_no_problems_attribute <-
+    expect_warning(cb_apply_col_spec(sw, cspec_na, set_problems_attribute=FALSE))
+  expect_equal(sw_result_na_warn_but_no_problems_attribute, sw_fct_na)
+
+  # The application should preserve variable labels on the affected columns
+  sw_lab <- sw
+  attr(sw_lab$name,       "label") <- "Name"
+  attr(sw_lab$height,     "label") <- "Height"
+  attr(sw_lab$hair_color, "label") <- "Skin color"
+  attr(sw_lab$skin_color, "label") <- "Skin color"
+  attr(sw_lab$eye_color,  "label") <- "Eye Color"
+
+  sw_fct_na_lab <- sw_fct_na
+  attr(sw_fct_na_lab$name,       "label") <- "Name"
+  attr(sw_fct_na_lab$height,     "label") <- "Height"
+  attr(sw_fct_na_lab$hair_color, "label") <- "Skin color"
+  attr(sw_fct_na_lab$skin_color, "label") <- "Skin color"
+  attr(sw_fct_na_lab$eye_color,  "label") <- "Eye Color"
+  #cb_apply_col_spec(sw_lab, cspec_na, warn_missing_levels=FALSE) |> View()
+  #View(sw_fct_na_lab)
+
+  expect_equal(cb_apply_col_spec(sw_lab, cspec_na, warn_missing_levels=FALSE), sw_fct_na_lab)
 })
 
