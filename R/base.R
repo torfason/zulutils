@@ -81,6 +81,24 @@ na_if_in <- function(x,y)
     x
 }
 
+#' Calculate standard error (of the mean estimate) of a vector
+#'
+#'
+#' creating the need for this function.
+#'
+#' @param x A numeric vector, or of a type allowable in the `sd()` function.
+#' @param na.rm A logical indicating whether missing values should be removed.
+#' @return The standard error of mean estimate of x
+#'
+#' @family Statistical functions
+#' @md
+#' @export
+se <- function(x, na.rm = FALSE) {
+  if (na.rm) x <- na.omit(x)
+  sd(x) / sqrt(length(x))
+}
+
+
 #' Pad string with space or other characters
 #'
 #' Left or right pad a string with space or other
