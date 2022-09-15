@@ -97,6 +97,33 @@ cb_as_col_spec_factors <- function(d) {
 }
 
 
+#' Convert column types according to a col_spec
+#'
+#' Custom wrapper around `readr::type_convert()` that suppresses warnings and
+#' copies labels, in order to (mostly) match the behavior of
+#' `cb_apply_col_spec()`. but without reimplementing a lot of functionality.
+#'
+#' A known key difference compared `cb_apply_col_spec()` is that `df` is fully
+#' processed according to the `col_types` argument, meaning that other columns
+#' may be converted in addition to the factor columns.
+#'
+#' @param df The `data.frame` to process.
+#' @param col_types The `col_spec` to apply.
+#' @param ... Other arguments to `readr::type_convert()`.
+#' @return A `data.frame` based on `d`, with any factor columns specified in
+#'   `col_types` converted to `factor` *and* any other columns processed
+#'   according to the functionality of `readr::type_convert()`
+#'
+#' @md
+#' @export
+#'
+type_convert_with_labels <- function(df, col_types=NULL, ...) {
+  readr::type_convert(df, col_types, ...) |>
+    suppressWarnings() |>
+    labelled::copy_labels_from(df)
+}
+
+
 #' Apply a col_spec to a data.frame
 #'
 #' @description

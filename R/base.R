@@ -92,6 +92,8 @@ na_if_in <- function(x,y)
 #'
 #' @family Statistical functions
 #' @md
+#' @importFrom stats na.omit
+#' @importFrom stats sd
 #' @export
 se <- function(x, na.rm = FALSE) {
   if (na.rm) x <- na.omit(x)

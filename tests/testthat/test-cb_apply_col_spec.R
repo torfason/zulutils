@@ -60,27 +60,27 @@ test_that("cb_apply_col_spec works", {
   # )
 
   # Standard, all levels present
-  sw_result <- cb_apply_col_spec(sw, cspec)
+  sw_result    <- cb_apply_col_spec(sw, cspec)
+  sw_result_tc <- type_convert_with_labels(sw, cspec)
   expect_equal(sw_result, sw_fct)
+  expect_equal(sw_result_tc, sw_fct)
 
   # The result with warn_missing_levels==TRUE, but zapping the problems afterwards
   sw_result_na_warn <- expect_warning(cb_apply_col_spec(sw, cspec_na))
     attr(sw_result_na_warn,"problems")<-NULL
     attr(sw_result_na_warn$hair_color,"problems")<-NULL
+  sw_result_na_warn_tc <- type_convert_with_labels(sw, cspec_na)
   expect_equal(sw_result_na_warn, sw_fct_na)
-
-  # The result with warn_missing_levels==TRUE, but zapping the problems afterwards
-  sw_result_na_warn <- expect_warning(cb_apply_col_spec(sw, cspec_na))
-    attr(sw_result_na_warn,"problems")<-NULL
-    attr(sw_result_na_warn$hair_color,"problems")<-NULL
-  expect_equal(sw_result_na_warn, sw_fct_na)
+  expect_equal(sw_result_na_warn_tc, sw_fct_na)
 
   # The result with warn_missing_levels==FALSE
   expect_equal(cb_apply_col_spec(sw, cspec_na, warn_missing_levels=FALSE), sw_fct_na)
+  expect_equal(type_convert_with_labels(sw, cspec_na), sw_fct_na)
 
-  # The result with set_problems_attribute==FALSE
+  # The result with set_problems_attribute==FALSE (type_convert does not set problems attribute)
   sw_result_na_warn_but_no_problems_attribute <-
     expect_warning(cb_apply_col_spec(sw, cspec_na, set_problems_attribute=FALSE))
+  expect_equal(sw_result_na_warn_but_no_problems_attribute, sw_fct_na)
   expect_equal(sw_result_na_warn_but_no_problems_attribute, sw_fct_na)
 
   # The application should preserve variable labels on the affected columns
@@ -101,5 +101,6 @@ test_that("cb_apply_col_spec works", {
   #View(sw_fct_na_lab)
 
   expect_equal(cb_apply_col_spec(sw_lab, cspec_na, warn_missing_levels=FALSE), sw_fct_na_lab)
+  expect_equal(type_convert_with_labels(sw_lab, cspec_na), sw_fct_na_lab)
 })
 
