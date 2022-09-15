@@ -15,6 +15,7 @@ Useful links:
 \itemize{
   \item \url{https://torfason.github.io/zulutils}
   \item \url{https://github.com/torfason/zulutils}
+  \item \url{https://torfason.github.io/zulutils/}
 }
 
 }

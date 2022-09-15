@@ -12,7 +12,8 @@ Language: en-US
 Encoding: UTF-8
 LazyData: true
 URL: https://torfason.github.io/zulutils,
-  https://github.com/torfason/zulutils
+    https://github.com/torfason/zulutils,
+    https://torfason.github.io/zulutils/
 Imports:
     stringr (>= 1.2.0),
     rlang, 
