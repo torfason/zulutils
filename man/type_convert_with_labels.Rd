@@ -21,7 +21,7 @@ according to the functionality of \code{readr::type_convert()}
 \description{
 Custom wrapper around \code{readr::type_convert()} that suppresses warnings and
 copies labels, in order to (mostly) match the behavior of
-\code{cb_apply_col_spec()}. but without reimplementing a lot of functionality.
+\code{cb_apply_col_spec()}. but without re-implementing a lot of functionality.
 }
 \details{
 A known key difference compared \code{cb_apply_col_spec()} is that \code{df} is fully

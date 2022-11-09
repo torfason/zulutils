@@ -101,7 +101,7 @@ cb_as_col_spec_factors <- function(d) {
 #'
 #' Custom wrapper around `readr::type_convert()` that suppresses warnings and
 #' copies labels, in order to (mostly) match the behavior of
-#' `cb_apply_col_spec()`. but without reimplementing a lot of functionality.
+#' `cb_apply_col_spec()`. but without re-implementing a lot of functionality.
 #'
 #' A known key difference compared `cb_apply_col_spec()` is that `df` is fully
 #' processed according to the `col_types` argument, meaning that other columns
