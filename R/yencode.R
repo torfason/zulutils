@@ -43,9 +43,10 @@ yencode <- function(string, escape="%", whitelist=c("._~-", "][!$&'()*+,;=:/?@#"
   whitelist_core  <- "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
   whitelist_final <- paste0(whitelist_core, paste0(whitelist, collapse=""))
 
-  # The escape string must be a single length character
-  stopifnot(is.character(escape))
-  stopifnot( (length(escape)==1) & (stringr::str_length(escape)==1) )
+  # The escape string must be one single-byte character
+  stopifnot( is.character(escape)           ,
+             length(escape) == 1            ,
+             length(charToRaw(escape)) == 1 )
 
   # Treat NULL or NA whitelist as empty string, but other types should error
   if (is.null(whitelist)) { whitelist <- "" }

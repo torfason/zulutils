@@ -118,9 +118,9 @@ test_that("yencode handles strange escapes", {
   expect_equal(ydecode(x_Z, "Z"), inputs)
   expect_equal(ydecode(x_A, "A"), inputs)
 
-  # One could even use a multibyte escape character to escape, and the encoding part works
-  # However, the decoding does not play nice with this, so we define it as out of scope
-  x_中 <- expect_silent(yencode(inputs, escape="中", whitelist=""))
+  # Multibyte characters do not work as escape prefixes, so they
+  # should be explicitly disallowed by the functions.
+  expect_error(yencode(inputs, escape="中", whitelist=""))
   expect_error(ydecode(x_中, "中"))
 
 })
