@@ -39,10 +39,6 @@
 #' @export
 yencode <- function(string, escape="%", whitelist=c("._~-", "][!$&'()*+,;=:/?@#")) {
 
-  # The following characters are always whitelisted and cannot be escaped
-  whitelist_core  <- "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-  whitelist_final <- paste0(whitelist_core, paste0(whitelist, collapse=""))
-
   # The escape string must be one single-byte character
   stopifnot( is.character(escape)           ,
              length(escape) == 1            ,
@@ -52,6 +48,10 @@ yencode <- function(string, escape="%", whitelist=c("._~-", "][!$&'()*+,;=:/?@#"
   if (is.null(whitelist)) { whitelist <- "" }
   whitelist[is.na(whitelist)] <- ""
   stopifnot(is.character(whitelist))
+
+  # The following characters are always whitelisted and cannot be escaped
+  whitelist_core  <- "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+  whitelist_final <- paste0(whitelist_core, paste0(whitelist, collapse=""))
 
   # The escape character must NOT be in the final whitelist
   if (stringr::str_detect(whitelist_final, stringr::fixed(escape))) {
@@ -71,8 +71,17 @@ yencode <- function(string, escape="%", whitelist=c("._~-", "][!$&'()*+,;=:/?@#"
     stringr::str_replace("\\]","\\\\]") |>
     stringr::str_replace("\\[","\\\\[") |>
     paste0(collapse = "")
+
   # Some defensive programming, the above should result in character of length 1
   stopifnot(length(wl) == 1)
+
+  # Final bit of defensive programming, the escape character byte must not
+  # be an intra-char byte in any of the whitelist chars
+  if (charToRaw(escape) %in% charToRaw(wl)) {
+    stop(paste0("The escape character byte (", charToRaw(escape), ") is present within,\n",
+                "a character in this whitelist. The offending whitelist character\n",
+                "must be removed manually."))
+  }
 
   vapply(string, function(string) {
     OK <- paste0("[^", wl, "]")
