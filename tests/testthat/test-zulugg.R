@@ -19,9 +19,9 @@ test_that("gg_apply works", {
   if( require(dplyr) && require(ggplot2) && require(snakecase) && require(forcats) ) {
 
     # The plot from the original example
-    p <- starwars %>%
-      filter(mass < 1000) %>%
-      mutate(species = species %>% fct_infreq %>%  fct_lump(5) %>% fct_explicit_na) %>%
+    p <- starwars |>
+      filter(mass < 1000) |>
+      mutate(species = species |> fct_infreq() |>  fct_lump(5) |> fct_na_value_to_level()) |>
       ggplot(aes(height, mass, color=species, size=birth_year)) +
       geom_point()
     expect_silent(   p                                  )
@@ -30,20 +30,20 @@ test_that("gg_apply works", {
 
 
     # Another plot, where updating vars is applicable as well
-    p <- starwars %>%
-      filter(mass<1000) %>%
+    p <- starwars |>
+      filter(mass<1000) |>
     ggplot() +
       aes(mass, height, color=sex) +
       geom_point() +
       theme_light()
-    expect_silent(   p                                                )
-    expect_silent(   gg_apply(p, to_sentence_case)                    )
-    expect_silent(   gg_apply(p, to_sentence_case, .labs=FALSE)        )
-    expect_silent(   gg_apply(p, to_sentence_case, .vars=FALSE)        )
+    expect_silent(   p                                            )
+    expect_silent(   gg_apply(p, to_sentence_case)                )
+    expect_silent(   gg_apply(p, to_sentence_case, .labs=FALSE)   )
+    expect_silent(   gg_apply(p, to_sentence_case, .vars=FALSE)   )
 
     # Specify particular labs or variables
 
-    expect_silent(   gg_apply(p, to_sentence_case, .labs=c("x"), .vars="sex")                    )
+    expect_silent(   gg_apply(p, to_sentence_case, .labs=c("x"), .vars="sex")                       )
     expect_silent(   gg_apply(p, to_sentence_case, .labs=c("x", "y", "colour"), .vars=c("sex") )                   )
     expect_silent(   gg_apply(p, to_sentence_case, .labs=c("x", "y", "z"), .vars=c("xes","sex") )                   )
 
