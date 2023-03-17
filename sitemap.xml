@@ -70,6 +70,9 @@
     <loc>https://torfason.github.io/zulutils/reference/notate.html</loc>
   </url>
   <url>
+    <loc>https://torfason.github.io/zulutils/reference/nth_prime.html</loc>
+  </url>
+  <url>
     <loc>https://torfason.github.io/zulutils/reference/padding.html</loc>
   </url>
   <url>
@@ -86,6 +89,12 @@
   </url>
   <url>
     <loc>https://torfason.github.io/zulutils/reference/se.html</loc>
+  </url>
+  <url>
+    <loc>https://torfason.github.io/zulutils/reference/sieve_primes.html</loc>
+  </url>
+  <url>
+    <loc>https://torfason.github.io/zulutils/reference/strh.html</loc>
   </url>
   <url>
     <loc>https://torfason.github.io/zulutils/reference/suppress_warnings.html</loc>
