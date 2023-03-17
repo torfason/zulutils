@@ -189,3 +189,19 @@ sample_strings <- function(nchar=3, size=1, upper=FALSE) {
     matrix(nrow = nchar, ncol = size) |>
     apply(MARGIN=2, paste, collapse="")
 }
+
+
+#' A modified version of the str() function that limits the length of displayed lists.
+#'
+#' @param object the object to be printed.
+#' @param max.level the maximum number of nested levels to be printed. Default is 1.
+#' @param list.len the maximum number of elements to be printed for a list. Default is determined by the value of max.level and the nth prime number.
+#' @param ... additional arguments to be passed to str().
+#' @return A printed representation of the object.
+#'
+#' @md
+#' @export
+strh <- function(object, max.level = 1, list.len = nth_prime(5-max.level), ...) {
+  print(list.len)
+  utils::str(object, max.level=max.level, list.len=list.len, ...)
+}
