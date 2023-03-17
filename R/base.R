@@ -29,16 +29,11 @@ identity_ellipsis <- function(x, ...) {
 
 #' @rdname identity_ellipsis
 #' @export
-noop <- function(x, ...)
-
-   {
+noop <- function(x, ...)  {
   .Deprecated("noop", msg=paste0("noop() is deprecated in favor of base::identity(), ",
                                  "or identity_ellipsis() in case of multiple arguments"))
   x
 }
-
-
-
 
 #' Replace missing values
 #'
@@ -117,7 +112,6 @@ se <- function(x, na.rm = FALSE) {
   sd(x) / sqrt(length(x))
 }
 
-
 #' Pad string with space or other characters
 #'
 #' Left or right pad a string with space or other
@@ -149,8 +143,7 @@ rpad = function(string, width, pad=" ")
 #'
 #' This function looks for pattern in each of the elements of string, returning
 #' TRUE for each element that contains pattern, and FALSE for the other
-#' elements. The argument order follows the conventions of the `stringr`
-#' package, and the underlying matching is done using [stringr::str_extract()].
+#' elements. This function is a thin wrapper around [stringr::str_detect()]
 #'
 #' @param string The (possibly vectorized) string to process.
 #' @param pattern The (possibly vectorized) regexp pattern to use.
@@ -160,13 +153,8 @@ rpad = function(string, width, pad=" ")
 #' @export
 bgrep = function(string, pattern)
 {
-  # THIS SHOULD JUST USE GREPL
-  # (or be replaced with a zfun(grepl, x) for us in pipes
-  v.match = stringr::str_extract(string, pattern)
-  return(!is.na(v.match))
+  stringr::str_detect(string, pattern)
 }
-
-
 
 #' Sample a set of strings, each string of a given length
 #'
@@ -184,19 +172,21 @@ bgrep = function(string, pattern)
 #' @md
 #' @export
 sample_strings <- function(nchar=3, size=1, upper=FALSE) {
-  ltr <- if (upper) {LETTERS} else {letters}
-  sample(ltr, nchar*size, replace=TRUE) |>
-    matrix(nrow = nchar, ncol = size) |>
-    apply(MARGIN=2, paste, collapse="")
+  if (upper) pattern<-"[A-Z]" else pattern <- "[a-z]"
+  stringi::stri_rand_strings(n=size, length=nchar, pattern=pattern)
 }
-
 
 #' A modified version of the str() function that limits the length of displayed lists.
 #'
 #' @param object the object to be printed.
+#'
 #' @param max.level the maximum number of nested levels to be printed. Default is 1.
-#' @param list.len the maximum number of elements to be printed for a list. Default is determined by the value of max.level and the nth prime number.
+#'
+#' @param list.len the maximum number of elements to be printed for a list.
+#'   Default is determined by the value of max.level and the nth prime number.
+#'
 #' @param ... additional arguments to be passed to str().
+#'
 #' @return A printed representation of the object.
 #'
 #' @md

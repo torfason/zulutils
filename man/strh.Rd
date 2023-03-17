@@ -11,7 +11,8 @@ strh(object, max.level = 1, list.len = nth_prime(5 - max.level), ...)
 
 \item{max.level}{the maximum number of nested levels to be printed. Default is 1.}
 
-\item{list.len}{the maximum number of elements to be printed for a list. Default is determined by the value of max.level and the nth prime number.}
+\item{list.len}{the maximum number of elements to be printed for a list.
+Default is determined by the value of max.level and the nth prime number.}
 
 \item{...}{additional arguments to be passed to str().}
 }

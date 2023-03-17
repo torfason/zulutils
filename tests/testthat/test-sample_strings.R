@@ -20,7 +20,7 @@ test_that("sample_strings work", {
 
 
   # Test predictablility, in single call or repeated calls
-  expected <- c("qea", "yjd", "rzq", "oxg", "dye")
+  expected <- c("xyh", "vqn", "tdr", "sls", "ygm")
   set.seed(42)
   x <- sample_strings(size=5)
   expect_equal(x, expected)
