@@ -49,6 +49,9 @@
     <loc>https://torfason.github.io/zulutils/reference/gg_integer_breaks.html</loc>
   </url>
   <url>
+    <loc>https://torfason.github.io/zulutils/reference/identity_ellipsis.html</loc>
+  </url>
+  <url>
     <loc>https://torfason.github.io/zulutils/reference/index.html</loc>
   </url>
   <url>
@@ -62,9 +65,6 @@
   </url>
   <url>
     <loc>https://torfason.github.io/zulutils/reference/na_replace.html</loc>
-  </url>
-  <url>
-    <loc>https://torfason.github.io/zulutils/reference/noop.html</loc>
   </url>
   <url>
     <loc>https://torfason.github.io/zulutils/reference/notate.html</loc>
