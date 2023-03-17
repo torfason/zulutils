@@ -24,14 +24,17 @@ Imports:
     readr, 
     purrr,
     haven,
-    labelled
-RoxygenNote: 7.2.1
+    labelled,
+    checkmate,
+    stringi
+RoxygenNote: 7.2.3
 Suggests: 
     testthat (>= 2.1.0),
     snakecase,
     ggplot2,
     waldo,
-    forcats
+    forcats (>= 1.0.0),
+    primes
 Depends: 
     R (>= 4.1),
     zmisc (>= 0.2.0),

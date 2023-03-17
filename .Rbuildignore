@@ -12,4 +12,5 @@
 ^scratch$
 ^CRAN-SUBMISSION$
 ^\.github$
+^data-raw$
 ^vignettes$
