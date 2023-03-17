@@ -19,10 +19,11 @@ test_that("comparison works", {
 
 #### Test noop() ####
 test_that("noop works", {
-    expect_equal(noop(letters), letters)
-    expect_equal(noop(NA), NA)
-    expect_equal(noop(1:10), 1:10)
-    expect_equal(noop(cars), cars)
+  # noop() is deprectaed in favor of identity
+  expect_equal(noop(letters), letters) |> expect_warning()
+  expect_equal(noop(NA), NA)           |> expect_warning()
+  expect_equal(noop(1:10), 1:10)       |> expect_warning()
+  expect_equal(noop(cars), cars)       |> expect_warning()
 })
 
 #### Test zeq() ####

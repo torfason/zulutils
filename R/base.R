@@ -6,21 +6,38 @@
 # It would also be useful to add psum, pprod and pmean
 
 
-#' Return a single argument unchanged
+#' Return argument unchanged
 #'
-#' It can often be useful (when developing pipelines for example),
-#' to have access to a function that simply returns the element
-#' that it receives. This is that function.
+#' @description
+#' It can often be useful (when developing pipelines for example), to have
+#' access to a function that simply returns the element that it receives. The
+#' [base::identity()] function works well for only one argument, but in some
+#' cases following arguments should be ignored. In those cases the
+#' `identity_ellipsis()` function can come in handy.
+#'
+#' The function was previously called `noop()` but that name is now deprecated.
 #'
 #' @param x The single argument to (not) process.
 #' @param ... Any other arguments are ignored
 #' @return The argument `x` is returned unchanged.
+#'
 #' @md
 #' @export
-noop = function(x, ...)
-{
-    x
+identity_ellipsis <- function(x, ...) {
+  identity(x)
 }
+
+#' @rdname identity_ellipsis
+#' @export
+noop <- function(x, ...)
+
+   {
+  .Deprecated("noop", msg=paste0("noop() is deprecated in favor of base::identity(), ",
+                                 "or identity_ellipsis() in case of multiple arguments"))
+  x
+}
+
+
 
 
 #' Replace missing values
