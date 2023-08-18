@@ -89,8 +89,8 @@ na.replace <- function(x, replace) {
 #' @export
 na_if_in <- function(x,y)
 {
-    x[x %in% y] <- NA
-    x
+  x[x %in% y] <- NA
+  x
 }
 
 #' Calculate standard error (of the mean estimate) of a vector
@@ -125,8 +125,7 @@ se <- function(x, na.rm = FALSE) {
 #' @name   padding
 #' @md
 #' @export
-lpad = function(string, width, pad=" ")
-{
+lpad = function(string, width, pad = " ") {
   stringr::str_pad(string, width, "left", pad)
 }
 
@@ -134,8 +133,7 @@ lpad = function(string, width, pad=" ")
 #' @name   padding
 #' @md
 #' @export
-rpad = function(string, width, pad=" ")
-{
+rpad = function(string, width, pad = " ") {
   stringr::str_pad(string, width, "right", pad)
 }
 
@@ -151,8 +149,7 @@ rpad = function(string, width, pad=" ")
 #'         of `string` matched the corresponding elements in `pattern`.
 #' @md
 #' @export
-bgrep = function(string, pattern)
-{
+bgrep = function(string, pattern) {
   stringr::str_detect(string, pattern)
 }
 
@@ -171,9 +168,9 @@ bgrep = function(string, pattern)
 #'
 #' @md
 #' @export
-sample_strings <- function(nchar=3, size=1, upper=FALSE) {
+sample_strings <- function(nchar = 3, size = 1, upper = FALSE) {
   if (upper) pattern<-"[A-Z]" else pattern <- "[a-z]"
-  stringi::stri_rand_strings(n=size, length=nchar, pattern=pattern)
+  stringi::stri_rand_strings(n = size, length = nchar, pattern = pattern)
 }
 
 #' A modified version of the str() function that limits the length of displayed lists.
@@ -191,7 +188,7 @@ sample_strings <- function(nchar=3, size=1, upper=FALSE) {
 #'
 #' @md
 #' @export
-strh <- function(object, max.level = 1, list.len = nth_prime(5-max.level), ...) {
+strh <- function(object, max.level = 1, list.len = nth_prime(5 - max.level), ...) {
   print(list.len)
-  utils::str(object, max.level=max.level, list.len=list.len, ...)
+  utils::str(object, max.level = max.level, list.len = list.len, ...)
 }

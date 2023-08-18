@@ -27,7 +27,7 @@
 #'
 #' @md
 #' @export
-asciify <-function(x, verify = TRUE) {
+asciify <- function(x, verify = TRUE) {
 
   # Sanity
   checkmate::assert_character(x)
@@ -69,7 +69,7 @@ asciify <-function(x, verify = TRUE) {
   "\\u00cb", "\\u00eb", "\\u0110", "\\u0111") |> stringi::stri_unescape_unicode()
 
 
-  # The most appropriate ascii representations of the
+  # The most appropriate ascii representations of the non-ascii characters
   ascii <- c("A", "a", "D", "d", "E", "e", "I", "i", "O", "o", "U", "u", "Y",
   "y", "Th", "th", "Ae", "ae", "O", "o", "A", "a", "A", "a", "O", "o", "ss",
   "A", "a", "A", "a", "C", "c", "E", "e", "E", "e", "I", "i", "I", "i", "O",
@@ -84,15 +84,17 @@ asciify <-function(x, verify = TRUE) {
 
   # Replace  Icelandic (and other European) non-ascii characters with ascii representations
   # This call is fully - and independently - vectorized in x and then in x/ascii
-  result <- stringi::stri_replace_all_fixed(x, org, ascii, vectorize_all=FALSE)
+  result <- stringi::stri_replace_all_fixed(x, org, ascii, vectorize_all = FALSE)
 
   # Verify the result
   if (verify) {
-    max_byte <- result |> stringr::str_c(collapse="") |> charToRaw() |> as.numeric() |> max()
+    max_byte <- result |> stringr::str_c(collapse = "") |> charToRaw() |> as.numeric() |> max()
     if (max_byte >= 128) {
-      stop(stringr::str_c("The result of asciify() still contains non-ascii characters. \n",
-                 "  The input probably contains characters that are not handled \n",
-                 "  by the function. Use 'verify = FALSE' if this is what you want.") )
+      stop( stringr::str_c(
+          "The result of asciify() still contains non-ascii characters. \n",
+          "  The input probably contains characters that are not handled \n",
+          "  by the function. Use 'verify = FALSE' if this is what you want."
+      ) )
     }
   }
 

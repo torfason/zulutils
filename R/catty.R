@@ -27,10 +27,10 @@
 #'
 #' @md
 #' @export
-catty <- function(x, sep=" ") {
+catty <- function(x, sep = " ") {
   stopifnot(is.character(x))
-  class(x) <- c("zmisc_catty",class(x))
-  attr(x,"sep") <- sep
+  class(x) <- c("zmisc_catty", class(x))
+  attr(x, "sep") <- sep
   x
 }
 
@@ -49,7 +49,7 @@ catty <- function(x, sep=" ") {
 #' @export
 print.zmisc_catty <- function(x, ...) {
   validate.zmisc_catty(x)
-  cat(x, sep=attr(x,"sep"))
+  cat(x, sep = attr(x, "sep"))
   invisible(x)
 }
 
@@ -64,7 +64,7 @@ print.zmisc_catty <- function(x, ...) {
 validate.zmisc_catty <- function(x) {
   stopifnot(inherits(x, "zmisc_catty"))
   stopifnot(is.character(x))
-  stopifnot(is.character(attr(x,"sep")))
+  stopifnot(is.character(attr(x, "sep")))
   invisible(x)
 }
 
