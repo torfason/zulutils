@@ -83,7 +83,7 @@ votes (or other claims on the resource), in a way that approximates
 proportionality. Semi-proportionality is achieved with the D'Hondt method,
 which is a commonly used approach in electoral allocation.</p>
 <p>Other implementations of D'Hondt allocation in <code>R</code> can be found in
-<code>electoral::seats_ha()</code> and <code>coalitions::dHondt()</code>. The motivation behind
+<code><a href="https://rdrr.io/pkg/electoral/man/seats_highest_averages.html" class="external-link">electoral::seats_ha()</a></code> and <code><a href="https://adibender.github.io/coalitions/reference/dHondt.html" class="external-link">coalitions::dHondt()</a></code>. The motivation behind
 this implementation is to have a simple interface with reasonable defaults,
 suitable for use in pipes operating on data in data.frames or tibbles. The
 error handling is also more explicit here than in other implementations.
@@ -92,7 +92,7 @@ names for the parties.</p>
 <p>The <code>largest_remainder()</code> allocates votes in a way parallel to the
 <code>dhondt()</code> function, but using the least remainder method, instead of a
 greatest divisors method. An alternative implementation exists in
-<code>electoral::seats_lr()</code>, and possibly in <code>coalitions::hare_niemeyer()</code>.
+<code><a href="https://rdrr.io/pkg/electoral/man/seats_largest_remainders.html" class="external-link">electoral::seats_lr()</a></code>, and possibly in <code><a href="https://adibender.github.io/coalitions/reference/hare_niemeyer.html" class="external-link">coalitions::hare_niemeyer()</a></code>.
 The rationale for implementation of this function is comparable to that for
 <code>dhondt()</code>.</p>
     </div>
