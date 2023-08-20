@@ -2,26 +2,23 @@
 % Please edit documentation in R/notate.R
 \name{notate}
 \alias{notate}
-\alias{ViewNotated}
-\alias{ViewAnnotated}
 \title{Embed factor levels and value labels in values.}
 \usage{
-notate(d)
-
-ViewNotated(d)
-
-ViewAnnotated(d)
+notate(x)
 }
 \arguments{
-\item{d}{The \code{data.frame} that one desires to annotate and/or view.}
+\item{x}{The object (either vector or \code{date.frame} of vectors), that one
+desires to annotate and/or view.}
 }
 \value{
-The processed \code{data.frame}, suitable for viewing.
+The processed \code{data.frame}, suitable for viewing, in particular
+through the \code{View()} function.
 }
 \description{
 This function adds level/label information as an annotation to either factors
 or \code{labelled} variables. This function is called \code{notate()} rather than
-\code{annotate()} to avoid conflict with \code{\link[ggplot2:annotate]{ggplot2::annotate()}}.
+\code{annotate()} to avoid conflict with \code{\link[ggplot2:annotate]{ggplot2::annotate()}}. It is a generic that
+can operate either on individual vectors or on a \code{data.frame}.
 
 When printing \code{labelled} variables from a \code{tibble} in a console, both the
 numeric value and the text label are shown, but no variable labels. When
@@ -33,9 +30,18 @@ In order to allow the viewing of both variable and value labels at the same
 time, this function converts both \code{factor} and \code{labelled} variables to
 \code{character}, including both numeric levels (\code{labelled} values) and character
 values (\code{labelled} labels) in the output.
+}
+\examples{
+labs <-
+d <- data.frame(
+  chr = letters[1:4],
+  fct = factor(c("alpha", "bravo", "chrly", "delta")),
+  lbl = ll_labelled(c(1, 2, 3, NA),
+                    labels = c(one=1, two=2),
+                    label = "A labelled vector")
+)
+dn <- notate(d)
+dn
+# View(dn)
 
-The output is not intended for further processing, only for viewing, for
-example using the \code{View()} function. This can be achieved directly by using
-the \code{ViewNotated()} or \code{ViewAnnotated()} functions (\code{ViewAnnotated()} is a
-synonym for \code{ViewNotated()}.
 }

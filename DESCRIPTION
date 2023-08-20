@@ -1,41 +1,53 @@
-Package: zulutils
 Type: Package
+Package: zulutils
 Title: Miscellaneous utility functions that the author found useful
 Version: 0.5.6
 Author: Magnus Thor Torfason
 Maintainer: Magnus Thor Torfason <m@zulutime.net>
-Description: This package contains various miscellaneous utility 
-  functions  that the author found useful at the time. You are 
-  free to use  it, but YMMV (Your Mileage May Vary).
+Description: This package contains various miscellaneous utility functions
+    that the author found useful at the time. You are free to use it, but
+    YMMV (Your Mileage May Vary).
 License: CC BY-SA 4.0
-Language: en-US
-Encoding: UTF-8
-LazyData: true
 URL: https://torfason.github.io/zulutils,
     https://github.com/torfason/zulutils,
     https://torfason.github.io/zulutils/
-Imports:
-    stringr (>= 1.2.0),
-    rlang, 
-    dplyr,
-    tibble,
-    magrittr,
-    drake,
-    readr, 
-    purrr,
-    haven,
-    labelled,
-    checkmate,
-    stringi
-RoxygenNote: 7.2.3
-Suggests: 
-    testthat (>= 2.1.0),
-    snakecase,
-    ggplot2,
-    waldo,
-    forcats (>= 1.0.0),
-    primes
 Depends: 
     R (>= 4.1),
-    zmisc (>= 0.2.0),
-    zfit (>= 0.3.0)
+    zfit (>= 0.3.0),
+    zmisc (>= 0.2.0)
+Imports:
+    charlatan,
+    checkmate,
+    DBI,
+    dbplyr,
+    dplyr,
+    drake,
+    duckdb,
+    labelled,
+    magrittr,
+    purrr,
+    readr,
+    rlang,
+    stringi,
+    stringr (>= 1.2.0),
+    tibble,
+    wakefield
+Suggests: 
+    arrow,
+    coalitions,
+    electoral,
+    forcats (>= 1.0.0),
+    ggplot2,
+    knitr,
+    primes,
+    rmarkdown,
+    snakecase,
+    testthat (>= 2.1.0),
+    waldo
+VignetteBuilder: 
+    knitr
+Encoding: UTF-8
+Language: en-US
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3

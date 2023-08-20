@@ -4,7 +4,8 @@
 #' @description
 #' This function adds level/label information as an annotation to either factors
 #' or `labelled` variables. This function is called `notate()` rather than
-#' `annotate()` to avoid conflict with [ggplot2::annotate()].
+#' `annotate()` to avoid conflict with [ggplot2::annotate()]. It is a generic that
+#' can operate either on individual vectors or on a `data.frame`.
 #'
 #' When printing `labelled` variables from a `tibble` in a console, both the
 #' numeric value and the text label are shown, but no variable labels. When
@@ -17,62 +18,81 @@
 #' `character`, including both numeric levels (`labelled` values) and character
 #' values (`labelled` labels) in the output.
 #'
-#' The output is not intended for further processing, only for viewing, for
-#' example using the `View()` function. This can be achieved directly by using
-#' the `ViewNotated()` or `ViewAnnotated()` functions (`ViewAnnotated()` is a
-#' synonym for `ViewNotated()`.
+#' @param x The object (either vector or `date.frame` of vectors), that one
+#'   desires to annotate and/or view.
 #'
-#' @param d The `data.frame` that one desires to annotate and/or view.
+#' @return The processed `data.frame`, suitable for viewing, in particular
+#'   through the `View()` function.
 #'
-#' @return The processed `data.frame`, suitable for viewing.
+#' @examples
+#' labs <-
+#' d <- data.frame(
+#'   chr = letters[1:4],
+#'   fct = factor(c("alpha", "bravo", "chrly", "delta")),
+#'   lbl = ll_labelled(c(1, 2, 3, NA),
+#'                     labels = c(one=1, two=2),
+#'                     label = "A labelled vector")
+#' )
+#' dn <- notate(d)
+#' dn
+#' # View(dn)
 #'
-#' @md
 #' @export
-notate <- function(d) {
+notate <- function(x) {
+  # Finding out which s3 methods get called
+  # https://stat.ethz.ch/R-manual/R-devel/library/utils/html/getS3method.html
+  # https://stackoverflow.com/questions/42738851/r-how-to-find-what-s3-method-will-be-called-on-an-object
+  UseMethod("notate")
+}
 
-  stopifnot(is.data.frame(d))
+#' @export
+notate.default <- function(x) {
+  type_short <- typeof(x) |> lookup_types_short()
+  attr(x, "label") <- paste_na(
+    paste0("<", type_short, ">"),
+    attr(x, "label"))
+  x
+}
 
-  num_to_zero_prefix_string <- function(x) {
-    stopifnot(is.numeric(x))
-    gsub(" ", "0", format(x))
-  }
-
-  # Converts labelled, using as_factor to prepend level
-  notate.labelled <- function(x) {
-    stopifnot(labelled::is.labelled(x))
-    r <- x |>
-      haven::as_factor(levels="both") |>
-      as.character()
-    labelled::var_label(r) <- paste0("<lbl> ", labelled::var_label(x))
-    r
-  }
-
-  # Converts factors, prepending level manually
-  # NAs should stay as NAs
-  notate.factor <- function(x) {
-    stopifnot(is.factor(x))
-    r <- rep(c(character(0), NA), length(x))
-    r[!is.na(x)] <- paste0("[", as.numeric(x[!is.na(x)]), "] ", as.character(x[!is.na(x)]))
-    labelled::var_label(r) <- paste0("<fct> ", labelled::var_label(x))
-    r
-  }
-
+#' @export
+notate.data.frame <- function(x) {
   # Apply to individual columns
-  result <- d |>
-    dplyr::mutate_if(labelled::is.labelled, notate.labelled) |>
-    dplyr::mutate_if(is.factor, notate.factor)
+  ddply_helper(x, notate)
+}
 
-  # Return the result
-  result
+#' @export
+notate.factor <- function(x) {
+  is.factor(x) || stop("x must be a factor")
+  r <- rep(c(character(0), NA), length(x))
+  r[!is.na(x)] <- paste0("[", as.numeric(x[!is.na(x)]), "] ", as.character(x[!is.na(x)]))
+  attr(r, "label") <- paste_na("<fct>", attr(x, "label")) # (ll_var_label() requires correct class)
+  r
+}
+
+#' @export
+notate.haven_labelled <- function(x) {
+  ll_assert_labelled(x)
+  vals   <- as.vector(x)
+  labs_n <- ll_to_character(x, default = NA)
+  r <- rep(c(character(0), NA), length(x))
+  r[!is.na(x)] <- paste_na(
+    paste0("[", vals[!is.na(x)], "]"),
+    labs_n[!is.na(x)])
+  attr(r, "label") <- paste_na("<lbl>", ll_var_label(x)) # (ll_var_label() requires correct class)
+  r
 }
 
 
-#' @rdname notate
-#' @export
-ViewNotated <- function(d) {
-  utils::View(notate(d))
-}
+# Helper to look up the short types given typeof()
+lookup_types_short <- zmisc::lookuper(
+  c(logical = "lgl",  integer = "int", double = "dbl",
+    character = "chr", complex = "cpl"))
 
-#' @rdname notate
-#' @export
-ViewAnnotated <- ViewNotated
+# Helper to suppress NAs in paste
+# https://stackoverflow.com/questions/13673894/suppress-nas-in-paste
+paste_na <- function(..., sep = " ") {
+  values <- cbind(...)
+  apply(values, 1, function(x) paste(x[!is.na(x)], collapse = sep))
+}
+# paste_na(c(1,1), c(2, NA))
+# paste_na(c(1,1), c(2, NA), 4:5)
